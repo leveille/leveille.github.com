@@ -1,24 +1,58 @@
 ---
 layout: default
+title: Jason Leveille
 ---
 
-<div class="blog-index">
-  {% assign index = true %}
-  {% for post in paginator.posts %}
-  {% assign content = post.content %}
-    <article>
-      {% include article.html %}
-    </article>
-  {% endfor %}
-  <div class="pagination">
-    {% if paginator.next_page %}
-      <a class="prev" href="{{paginator.next_page}}">&larr; Older</a>
-    {% endif %}
-    <a href="/blog/archives">Blog Archives</a>
-    {% if paginator.previous_page %}
-    <a class="next" href="{{paginator.previous_page}}">Newer &rarr;</a>
-    {% endif %}
-  </div>
+<div id="main">
+  <article>
+    <h1>About Me</h1>
+    <p>
+      I work for the <a href="http://nationalpriorities.org">National Priorities Project</a> as a web developer.  On a daily basis I exercise my Python, PostgreSQL, and Linux skill sets.  I am responsible for multiple websites and servers (including testing, deployment, bug fixing, new features, and everything in between).
+    </p>
+
+    <h2>Previous Employment</h2>
+    <h3><a href="http://sprucemedia.com">Spruce Media</a></h3>
+    <p>Worked with .Net tools and lots o' JavaScript.</p>
+
+    <h3><a href="http://blueatlas.com">Blue Atlas Interactive</a></h3>
+    <p>Worked with a wide range of tools, including Python, PHP, MySQL, PostgreSQL, Apache, Nginx, etc</p>
+
+    <h3><a href="http://www.montgomeryschoolsmd.org/schools/qohs/">Quince Orchard High School</a></h3>
+    <p>Enjoyed many years as a Computer Science teacher.  I was lucky enough to be named IT educator of the year in 2006, as well as Quince Orchard's staff member of the year in 2006.  I have many, many fond memories of the school, students, and teachers at Quince Orchard.  Occasionally I get email from former students which I really enjoy.</p>
+
+    <h2>Teaching</h2>
+    <p>
+      Here are my <a href="https://www.dropbox.com/s/mbgjjmlc16af7x1/assignments.tar.gz">old lesson plans</a> ... if that's what you came here for.
+    </p>
+
+    <h2>Education</h2>
+    <p>
+      I have a MS in Computer Science, and a BS in Math/Computer Education.
+    </p>
+
+    <h2>Old Blog Articles</h2>
+    <p>I wiped out my old blog, but kept a few articles around.  Here they are:</p>
+    <ul>
+      <li>
+        <a href="http://bit.ly/UvBDsD">Pairing Django and Titanium in a Desktop App</a> - Feb. 17, 2010
+      </li>
+      <li>
+        <a href="http://bit.ly/YQo75E">CakePHP vs Django vs Rails vs Who Cares - Make a Decision</a> - Feb. 11, 2009
+      </li>
+      <li>
+        <a href="http://bit.ly/RUnMNh">JavaScript Lazy Loading</a> - May 7, 2008
+      </li>
+      <li>
+        <a href="http://bit.ly/RUo1bg">Avectra Member Management API</a> - Apr. 18, 2008
+      </li>
+    </ul>
+
+    <h2>Contact</h2>
+    <ul>
+      <li><a href="mailto:jason@leve.us">jason@leve.us</a></li>
+      <li><a href="http://twitter.com/jleveille">@jleveille</a></li>
+    </ul>
+  </article>
 </div>
 <aside class="sidebar">
   {% if site.blog_index_asides.size %}
