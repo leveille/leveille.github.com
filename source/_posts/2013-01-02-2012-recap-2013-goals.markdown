@@ -6,8 +6,44 @@ comments: false
 categories: 
 ---
 
-2012 held a lot of highlights for me.  
+2012 Recap
+----------
 
-<!-- more -->
+Of all the highlights of 2012 (there are a lot, only a fraction of which will be here), my family has been the best part of my year.  My wife is a rock and helped me through some personal struggles.  My girls (6 and 3) never fail to make me laugh.  They're both at such fun ages.  We spent more time this summer upta camp which was a nice change from 2011.  I'm already looking forward to opening up camp this Spring.
 
-Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
+<!--more-->
+
+In July I biked 200 miles from Seattle, WA to Portland, OR over 2 days.  I spent the first part of the year getting ready for that ride and I really enjoyed the exercise.  I had multiple weeks where my bicycle mile count was over 100, and a few weeks where I was scratching at 200 miles.  The [STP ride](https://shop.cascade.org/content/events/stp-details) was challenging and fun.  Most important, I got to spend a lot of time with my younger brother (though he was mostly at my back wheel).  With all of that said ... I spent the last part of 2012 getting fat and sitting on my ass.  That certainly has to change in 2013.
+
+I read ~10 books this year (not including technical books).  My favorite book in 2012 was [Unbroken](http://www.amazon.com/Unbroken-World-Survival-Resilience-Redemption/dp/1400064163/ref=sr_1_1?s=books&ie=UTF8&qid=1357156649&sr=1-1&keywords=unbroken) by Laura Hillenbrand.  The story of Louis Zamperini is incredible.  My second favorite read was [John Dies at the End](http://www.amazon.com/John-Dies-End-David-Wong/dp/1250035953/ref=sr_1_1?ie=UTF8&qid=1357156544&sr=8-1&keywords=david+wong+john+dies+at+the+end) by David Wong.
+
+
+### Professionally
+
+For the past 3 years I've enjoyed working from home, especially now that I get out of the house 2-3 times a week and find different spots to flex my terminal.  Speaking of work, I worked for [Spruce Media](http://sprucemedia.com/) until the end of September.  The ~19 months I worked for Spruce were awesome ... the talent level there is crazy and the people were great.  Leaving Spruce was a difficult decision, but it was the right one for me.  The guy who looks like he's [all head and one shoulder](http://sprucemedia.com/about) in this pic (Chad) has been a great friend of mine (like a brother) for a long time.  Getting to work with him was incroyable.
+
+In October I started working for the [National Priorities Project](http://nationalpriorities.org/) (NPP) and I'm really enjoying the work.  Not only am I learning a lot about the budget process, but I'm once again working with some great people (really high on the pre-req list for anyplace I work).  I'm still a web developer (just in case you thought I was now an economist or something).  I spend most of my time in a terminal window wrangling servers and writing code.  I've always had the desire to do work that provides greater value to society.  NPP is helping me achieve that goal.
+
+This year I completed more contract work than ever before.  Most notably, I built an e-commerce and reporting solution for [WinterKids](https://secure.winterkids.org/).  WinterKids is a great Maine non-profit which helps children develop healthy lifelong habits through fun, outdoor winter activity.  The work itself was rewarding (it was my first time working with [Stripe](http://stripe.com/)), however the real reward is helping the children ... 'cause I believe the children are our future. 
+
+2013 Goals
+----------
+
+In no particular order:
+
+* Do a much better job of unplugging at night
+* Write one blog article per month
+* More Twitter
+* Get down to 180 and maintain that weight
+* Read more blog articles (and actually leave comments and take part in the discussion)
+* Start to contribute to an open source project (even if that means answering questions and getting back on IRC)
+* Create something with Node.js (maybe I'll actually read this book I have)
+* Exercise
+* Learn at least one new language
+* Learn to fly my remote control helicopter from the basement of my house to the attic (challenge accepted) ... BTW, thanks [New Relic](http://newrelic.com) for the free chopper!
+* Learn VIM (even though I've been passively using VIM for ~5 years)
+* More TMUX
+* Read more zombie books
+* Learn more about the wine I'm drinking
+
+SIDE NOTE: Did I ever mention that in 2010 my resolution was to go the entire year w/out eating dessert?  I made it to October 18th, when I had myself a fat ice cream with my oldest daughter.  I figured I deserved it.  If I can do that, I should be able to meet these goals.
