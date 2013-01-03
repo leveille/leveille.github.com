@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: JavaScript | Jason Leveille]]></title>
-  <link href="http://jason.leveille.us/blog/categories/javascript/atom.xml" rel="self"/>
-  <link href="http://jason.leveille.us/"/>
-  <updated>2013-01-02T22:03:45-05:00</updated>
-  <id>http://jason.leveille.us/</id>
+  <link href="http://jasonleveille.com/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://jasonleveille.com/"/>
+  <updated>2013-01-03T13:14:46-05:00</updated>
+  <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
     <email><![CDATA[i@leve.us]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[JavaScript Lazy Loading]]></title>
-    <link href="http://jason.leveille.us/blog/2008/05/javascript-lazy-loading/"/>
+    <link href="http://jasonleveille.com/blog/2008/05/javascript-lazy-loading/"/>
     <updated>2008-05-07T20:40:00-04:00</updated>
-    <id>http://jason.leveille.us/blog/2008/05/javascript-lazy-loading</id>
+    <id>http://jasonleveille.com/blog/2008/05/javascript-lazy-loading</id>
     <content type="html"><![CDATA[<p>I just finished a great <a href="http://www.digital-web.com/">Digital Web Magazine</a> article about improving page load times with <a href="http://www.digital-web.com/articles/improve_page_performance_with_lazy_loading/">lazy loading techniques</a>. The article (by <a href="http://www.digital-web.com/about/contributors/jakob_heuser">Jakob Heuser</a>) was very well written and described <a href="http://www.digital-web.com/extras/lazy_loading/yui_3types.html">proximity, timeout, and event</a> based lazy loading. If you continue to read you will see how I was able to reduce page load by 300+kb by implementing lazy loading.</p>
 
 <!--more-->

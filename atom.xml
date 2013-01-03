@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Jason Leveille]]></title>
-  <link href="http://jason.leveille.us/atom.xml" rel="self"/>
-  <link href="http://jason.leveille.us/"/>
-  <updated>2013-01-02T22:03:45-05:00</updated>
-  <id>http://jason.leveille.us/</id>
+  <link href="http://jasonleveille.com/atom.xml" rel="self"/>
+  <link href="http://jasonleveille.com/"/>
+  <updated>2013-01-03T13:14:46-05:00</updated>
+  <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
     <email><![CDATA[i@leve.us]]></email>
@@ -15,12 +15,12 @@
   
   <entry>
     <title type="html"><![CDATA[2012 Recap, 2013 Goals]]></title>
-    <link href="http://jason.leveille.us/blog/2013/01/2012-recap-2013-goals/"/>
+    <link href="http://jasonleveille.com/blog/2013/01/2012-recap-2013-goals/"/>
     <updated>2013-01-02T07:30:00-05:00</updated>
-    <id>http://jason.leveille.us/blog/2013/01/2012-recap-2013-goals</id>
+    <id>http://jasonleveille.com/blog/2013/01/2012-recap-2013-goals</id>
     <content type="html"><![CDATA[<h2>2012 Recap</h2>
 
-<p>Of all the highlights of 2012 (there are a lot, only a fraction of which will be here), my family has been the best part of my year.  My wife is a rock and helped me through some personal struggles.  My girls (6 and 3) never fail to make me laugh.  They&#8217;re both at such fun ages.  We spent more time this summer upta camp which was a nice change from 2011.  I&#8217;m already looking forward to opening up camp this Spring.</p>
+<p><a href="http://www.flickr.com/photos/dhgatsby/"><img class="left" src="http://jasonleveille.com/images/posts/8333312959_9444dd2051_n.jpg" width="280" height="280" title="Photo by dhgatsby" alt="Happy New Year"></a> Of all the highlights of 2012 (there are a lot, only a fraction of which will be here), my family has been the best part of my year.  My wife is a rock and helped me through some personal struggles.  My girls (6 and 3) never fail to make me laugh.  They&#8217;re both at such fun ages.  We spent more time this summer upta camp which was a nice change from 2011.  I&#8217;m already looking forward to opening up camp this Spring.</p>
 
 <!--more-->
 
@@ -65,9 +65,9 @@
   
   <entry>
     <title type="html"><![CDATA[Pairing Django and Titanium in a Desktop App]]></title>
-    <link href="http://jason.leveille.us/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app/"/>
+    <link href="http://jasonleveille.com/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app/"/>
     <updated>2010-02-17T21:07:00-05:00</updated>
-    <id>http://jason.leveille.us/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app</id>
+    <id>http://jasonleveille.com/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app</id>
     <content type="html"><![CDATA[<p>Over the past four months I have been doing a lot of work in Python and Django. Naturally, while recently playing around with <a href="http://www.appcelerator.com/products/titanium-desktop-application-development/">Appcelerator Titanium Desktop</a> (which seems to have good Python support), I wanted to see how Django and Titanium would pair.</p>
 
 <!--more-->
@@ -95,7 +95,7 @@
 <h2>Links</h2>
 
 <ul>
-<li><a href="http://jason.leveille.us/assets/leveille-django-titanium-7da2c38.tar.gz">Source Files</a></li>
+<li><a href="http://jasonleveille.com/assets/leveille-django-titanium-7da2c38.tar.gz">Source Files</a></li>
 </ul>
 
 
@@ -349,9 +349,9 @@ from test_project.contrib.db import py_get_db
   
   <entry>
     <title type="html"><![CDATA[CakePHP vs Django vs Rails vs Who Cares - Make a Decision]]></title>
-    <link href="http://jason.leveille.us/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/"/>
+    <link href="http://jasonleveille.com/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/"/>
     <updated>2009-02-11T20:54:00-05:00</updated>
-    <id>http://jason.leveille.us/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision</id>
+    <id>http://jasonleveille.com/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision</id>
     <content type="html"><![CDATA[<p>As someone who:</p>
 
 <ol>
@@ -404,9 +404,9 @@ from test_project.contrib.db import py_get_db
   
   <entry>
     <title type="html"><![CDATA[JavaScript Lazy Loading]]></title>
-    <link href="http://jason.leveille.us/blog/2008/05/javascript-lazy-loading/"/>
+    <link href="http://jasonleveille.com/blog/2008/05/javascript-lazy-loading/"/>
     <updated>2008-05-07T20:40:00-04:00</updated>
-    <id>http://jason.leveille.us/blog/2008/05/javascript-lazy-loading</id>
+    <id>http://jasonleveille.com/blog/2008/05/javascript-lazy-loading</id>
     <content type="html"><![CDATA[<p>I just finished a great <a href="http://www.digital-web.com/">Digital Web Magazine</a> article about improving page load times with <a href="http://www.digital-web.com/articles/improve_page_performance_with_lazy_loading/">lazy loading techniques</a>. The article (by <a href="http://www.digital-web.com/about/contributors/jakob_heuser">Jakob Heuser</a>) was very well written and described <a href="http://www.digital-web.com/extras/lazy_loading/yui_3types.html">proximity, timeout, and event</a> based lazy loading. If you continue to read you will see how I was able to reduce page load by 300+kb by implementing lazy loading.</p>
 
 <!--more-->
@@ -619,9 +619,9 @@ from test_project.contrib.db import py_get_db
   
   <entry>
     <title type="html"><![CDATA[Avectra Member Management API]]></title>
-    <link href="http://jason.leveille.us/blog/2008/04/avectra-member-management-api/"/>
+    <link href="http://jasonleveille.com/blog/2008/04/avectra-member-management-api/"/>
     <updated>2008-04-18T20:25:00-04:00</updated>
-    <id>http://jason.leveille.us/blog/2008/04/avectra-member-management-api</id>
+    <id>http://jasonleveille.com/blog/2008/04/avectra-member-management-api</id>
     <content type="html"><![CDATA[<p>Recently I worked on a project where all member data was being managed through a third party member management service, provided by a company named <a href="http://www.avectra.com/eweb/StartPage.aspx?site=Avectra07">Avectra</a>. The product does more than manage member data from the looks of things, but all I cared about was interaction with the member management API.</p>
 
 <!--more-->

@@ -1,43 +1,43 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://jason.leveille.us/blog/2008/04/avectra-member-management-api/</loc>
-        <lastmod>2013-01-02T20:39:06-05:00</lastmod>
+        <loc>http://jasonleveille.com/blog/2008/04/avectra-member-management-api/</loc>
+        <lastmod>2013-01-03T13:09:06-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jason.leveille.us/blog/2008/05/javascript-lazy-loading/</loc>
-        <lastmod>2013-01-02T20:52:55-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://jason.leveille.us/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/
-        </loc>
-        <lastmod>2013-01-02T21:51:57-05:00</lastmod>
+        <loc>http://jasonleveille.com/blog/2008/05/javascript-lazy-loading/</loc>
+        <lastmod>2013-01-03T13:09:06-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://jason.leveille.us/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app/
+            http://jasonleveille.com/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/
         </loc>
-        <lastmod>2013-01-02T21:50:44-05:00</lastmod>
+        <lastmod>2013-01-03T13:09:06-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jason.leveille.us/blog/2013/01/2012-recap-2013-goals/</loc>
-        <lastmod>2013-01-02T20:53:44-05:00</lastmod>
+        <loc>
+            http://jasonleveille.com/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app/
+        </loc>
+        <lastmod>2013-01-03T13:09:06-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jason.leveille.us/blog/archives/</loc>
-        <lastmod>2013-01-02T21:51:57-05:00</lastmod>
+        <loc>http://jasonleveille.com/blog/2013/01/2012-recap-2013-goals/</loc>
+        <lastmod>2013-01-03T13:09:06-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jason.leveille.us/blog/</loc>
-        <lastmod>2013-01-02T21:51:57-05:00</lastmod>
+        <loc>http://jasonleveille.com/blog/archives/</loc>
+        <lastmod>2013-01-03T13:09:07-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jason.leveille.us/</loc>
-        <lastmod>2013-01-02T21:51:57-05:00</lastmod>
+        <loc>http://jasonleveille.com/blog/</loc>
+        <lastmod>2013-01-03T13:09:06-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jason.leveille.us/robots.txt</loc>
-        <lastmod>2013-01-02T11:14:28-05:00</lastmod>
+        <loc>http://jasonleveille.com/</loc>
+        <lastmod>2013-01-03T13:09:07-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jasonleveille.com/robots.txt</loc>
+        <lastmod>2013-01-03T13:09:07-05:00</lastmod>
     </url>
 </urlset>

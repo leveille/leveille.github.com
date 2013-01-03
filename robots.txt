@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://jason.leveille.us/sitemap.xml 
+Sitemap: http://jasonleveille.com/sitemap.xml 

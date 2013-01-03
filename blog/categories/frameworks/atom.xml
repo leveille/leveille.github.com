@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Frameworks | Jason Leveille]]></title>
-  <link href="http://jason.leveille.us/blog/categories/frameworks/atom.xml" rel="self"/>
-  <link href="http://jason.leveille.us/"/>
-  <updated>2013-01-02T22:03:45-05:00</updated>
-  <id>http://jason.leveille.us/</id>
+  <link href="http://jasonleveille.com/blog/categories/frameworks/atom.xml" rel="self"/>
+  <link href="http://jasonleveille.com/"/>
+  <updated>2013-01-03T13:14:46-05:00</updated>
+  <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
     <email><![CDATA[i@leve.us]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CakePHP vs Django vs Rails vs Who Cares - Make a Decision]]></title>
-    <link href="http://jason.leveille.us/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/"/>
+    <link href="http://jasonleveille.com/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/"/>
     <updated>2009-02-11T20:54:00-05:00</updated>
-    <id>http://jason.leveille.us/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision</id>
+    <id>http://jasonleveille.com/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision</id>
     <content type="html"><![CDATA[<p>As someone who:</p>
 
 <ol>

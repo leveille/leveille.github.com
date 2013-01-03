@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: PHP | Jason Leveille]]></title>
-  <link href="http://jason.leveille.us/blog/categories/php/atom.xml" rel="self"/>
-  <link href="http://jason.leveille.us/"/>
-  <updated>2013-01-02T22:03:45-05:00</updated>
-  <id>http://jason.leveille.us/</id>
+  <link href="http://jasonleveille.com/blog/categories/php/atom.xml" rel="self"/>
+  <link href="http://jasonleveille.com/"/>
+  <updated>2013-01-03T13:14:46-05:00</updated>
+  <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
     <email><![CDATA[i@leve.us]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Avectra Member Management API]]></title>
-    <link href="http://jason.leveille.us/blog/2008/04/avectra-member-management-api/"/>
+    <link href="http://jasonleveille.com/blog/2008/04/avectra-member-management-api/"/>
     <updated>2008-04-18T20:25:00-04:00</updated>
-    <id>http://jason.leveille.us/blog/2008/04/avectra-member-management-api</id>
+    <id>http://jasonleveille.com/blog/2008/04/avectra-member-management-api</id>
     <content type="html"><![CDATA[<p>Recently I worked on a project where all member data was being managed through a third party member management service, provided by a company named <a href="http://www.avectra.com/eweb/StartPage.aspx?site=Avectra07">Avectra</a>. The product does more than manage member data from the looks of things, but all I cared about was interaction with the member management API.</p>
 
 <!--more-->
