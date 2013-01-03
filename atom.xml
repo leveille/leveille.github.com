@@ -4,7 +4,7 @@
   <title><![CDATA[Jason Leveille]]></title>
   <link href="http://jason.leveille.us/atom.xml" rel="self"/>
   <link href="http://jason.leveille.us/"/>
-  <updated>2013-01-02T21:49:16-05:00</updated>
+  <updated>2013-01-02T21:50:51-05:00</updated>
   <id>http://jason.leveille.us/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -69,6 +69,9 @@
     <updated>2010-02-17T21:07:00-05:00</updated>
     <id>http://jason.leveille.us/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app</id>
     <content type="html"><![CDATA[<p>Over the past four months I have been doing a lot of work in Python and Django. Naturally, while recently playing around with <a href="http://www.appcelerator.com/products/titanium-desktop-application-development/">Appcelerator Titanium Desktop</a> (which seems to have good Python support), I wanted to see how Django and Titanium would pair.</p>
+
+<!--more-->
+
 
 <h2>Assumptions</h2>
 
