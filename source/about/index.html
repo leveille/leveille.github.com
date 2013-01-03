@@ -1,0 +1,47 @@
+---
+layout: default
+title: About Me
+---
+
+<div id="main">
+  <article>
+    <p>{% img /images/header1.jpg %}</p>
+    <h1>About Me</h1>
+    <p>
+      I work for the <a href="http://nationalpriorities.org">National Priorities Project</a> as a web developer.  On a daily basis I exercise my Python, PostgreSQL, and Linux skill sets.  I am responsible for multiple websites and servers (including testing, deployment, bug fixing, new features, and everything in between).
+    </p>
+
+    <h2>Previous Employment</h2>
+    <p><a href="http://sprucemedia.com"><strong>Spruce Media</strong></a><br>
+      Worked with .Net tools and lots o' JavaScript.</p>
+
+    <p><a href="http://blueatlas.com"><strong>Blue Atlas Interactive</strong></a><br>
+      Worked with a wide range of tools, including Python, PHP, MySQL, PostgreSQL, Apache, Nginx, etc</p>
+
+    <p><a href="http://www.montgomeryschoolsmd.org/schools/qohs/"><strong>Quince Orchard High School</strong></a><br>
+      Enjoyed many years as a Computer Science teacher.  I was lucky enough to be named IT educator of the year in 2006, as well as Quince Orchard's staff member of the year in 2006.  I have many, many fond memories of the school, students, and teachers at Quince Orchard.  Occasionally I get email from former students which I really enjoy.</p>
+
+    <h2>Teaching</h2>
+    <p>
+      Here are my <a href="https://www.dropbox.com/s/mbgjjmlc16af7x1/assignments.tar.gz">old lesson plans</a> ... if that's what you came here for.
+    </p>
+
+    <h2>Education</h2>
+    <p>
+      I have a MS in Computer Science, and a BS in Math/Computer Education.
+    </p>
+
+    <h2>Contact</h2>
+    <ul>
+      <li><a href="mailto:jason@leve.us">jason@leve.us</a></li>
+      <li><a href="http://twitter.com/jleveille">@jleveille</a></li>
+    </ul>
+  </article>
+</div>
+<aside class="sidebar">
+  {% if site.blog_index_asides.size %}
+    {% include_array blog_index_asides %}
+  {% else %}
+    {% include_array default_asides %}
+  {% endif %}
+</aside>
