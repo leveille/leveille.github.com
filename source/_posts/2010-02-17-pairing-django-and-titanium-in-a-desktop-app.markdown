@@ -8,6 +8,8 @@ categories: Django
 
 Over the past four months I have been doing a lot of work in Python and Django. Naturally, while recently playing around with [Appcelerator Titanium Desktop](http://www.appcelerator.com/products/titanium-desktop-application-development/) (which seems to have good Python support), I wanted to see how Django and Titanium would pair.
 
+<!--more-->
+
 ##Assumptions
 
 1. [Titanium installed](http://www.appcelerator.com/products/download/)
