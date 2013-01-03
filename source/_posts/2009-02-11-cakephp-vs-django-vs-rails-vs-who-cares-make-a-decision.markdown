@@ -13,6 +13,8 @@ As someone who:
 
 I am often asked about the tough choice of picking among all the great framework choices (both in and out of the PHP world).  My advice is always the same.
 
+<!--more-->
+
 ##Who Cares - Make a Decision
 
 Getting stuck in [choice limbo](http://www.google.com/search?hl=en&q=which+framework+should+I+choose&btnG=Google+Search&aq=f&oq=which+framework+should+I+choos) is bad for many reasons.  Perhaps the biggest one of all has to do with inaction.  If you are unsure which framework to choose from, chances are pretty good you’re not writing code or being as productive as you could be.  If you’re not writing code than you’re not starting the process of getting over one or more learning curves (every framework will carry a learning curve ... if you choose a framework outside of a language you are familiar with, than you’ll have many learning curves to get over).
