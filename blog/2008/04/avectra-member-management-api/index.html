@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Avectra Member Management API - Jason Leveille</title>
+  <meta name="author" content="Jason Leveille">
+
+  
+  <meta name="description" content="Recently I worked on a project where all member data was being managed through a third party member management service, provided by a company named &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jason.leveille.us/blog/2008/04/avectra-member-management-api/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Jason Leveille" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37280745-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jason Leveille</a></h1>
+  
+    <h2>Web developer, loving life in Southern Maine</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jason.leveille.us" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Avectra Member Management API</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-18T20:25:00-04:00" pubdate data-updated="true">Apr 18<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Recently I worked on a project where all member data was being managed through a third party member management service, provided by a company named <a href="http://www.avectra.com/eweb/StartPage.aspx?site=Avectra07">Avectra</a>. The product does more than manage member data from the looks of things, but all I cared about was interaction with the member management API.</p>
+
+<!--more-->
+
+
+<p>I had to authenticate against an external data source, as well as query the data source for member information when needed. Avectra does have a web service API which it has named xWeb. Here is a quote from <a href="http://wiki.avectra.com/index.php?title=NetFORUM">their Wiki</a>:</p>
+
+<blockquote><p>xWeb is netFORUM’s XML web services application. netFORUM is an enterprise level Association Management System (AMS) developed by Avectra that allows associations to manage their customers and related activities. netFORUM is used by association staff, members, and the public at large.</p><footer><strong>Avectra</strong> <cite><a href='http://wiki.avectra.com/index.php?title=NetFORUM'>Avectra Wiki</a></cite></footer></blockquote>
+
+
+<h2>Interacting with the API</h2>
+
+<p>After a successful authentication with Avectra, the authenticated user is presented with a token that they pass along with API requests. Pretty standard stuff. The Wiki does an ok job of explaining authentication and login (two different things), therefore I’ll jump right to the good stuff. If you’re stuck on authentication/weblogin please let me know.</p>
+
+<p>For interacting with the API I created a class file to abstract, at least to a small degree, some of the details of consuming the service. Here it is:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="cp">&lt;?php</span>
+</span><span class='line'>  <span class="cm">/*</span>
+</span><span class='line'><span class="cm">  * @author: Jason Leveille</span>
+</span><span class='line'><span class="cm">  * Provides access to avectra web services</span>
+</span><span class='line'><span class="cm">  */</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Avectra</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">//Avectra organization api username and password (not member username/password) to access web services</span>
+</span><span class='line'>     <span class="k">private</span> <span class="nv">$user</span> <span class="o">=</span> <span class="s1">&#39;user&#39;</span><span class="p">;</span>
+</span><span class='line'>     <span class="k">private</span> <span class="nv">$pass</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">//Avectra paths to xweb and eweb.  This is handy so that you can easily switch back and fourth between dev and production</span>
+</span><span class='line'>     <span class="k">private</span> <span class="nv">$xweb</span> <span class="o">=</span> <span class="s1">&#39;www.mencnet.org/xweb/&#39;</span><span class="p">;</span>
+</span><span class='line'>     <span class="k">private</span> <span class="nv">$eweb</span> <span class="o">=</span> <span class="s1">&#39;https://www.mencnet.org/netforummenctest/eweb/&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="sd">/**</span>
+</span><span class='line'><span class="sd">    * Grabs data associated with a member based on customer key / token</span>
+</span><span class='line'><span class="sd">    * @param $cst_key Customer Key to search on</span>
+</span><span class='line'><span class="sd">    */</span>
+</span><span class='line'>     <span class="k">public</span> <span class="k">function</span> <span class="nf">getMemberDataByKey</span><span class="p">(</span><span class="nv">$cst_key</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$cst_key</span><span class="p">))</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>           <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nv">$memberData</span> <span class="o">=</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;https://%s:%s@%snetFORUMXML.asmx/GetIndividualInformation?IndividualKey=%s&#39;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">pass</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xweb</span><span class="p">,</span> <span class="nv">$cst_key</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">//The simplest solution is to call simplexml_load_file directly, however this was causing issues on Solaris 10, php 5.2.  Didn&#39;t have time to investigate, so I went with load_string</span>
+</span><span class='line'>        <span class="c1">//return simplexml_load_file($memberData);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nv">$data</span> <span class="o">=</span> <span class="nb">simplexml_load_string</span><span class="p">(</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="nv">$memberData</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">//make sure that the returned xml file actually contains data</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="o">-&gt;</span><span class="na">IndividualObject</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="na">eml_address</span><span class="p">))</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>           <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="nv">$data</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="sd">/**</span>
+</span><span class='line'><span class="sd">    * Grabs data associated with a member based on member email</span>
+</span><span class='line'><span class="sd">    * @param $email Member email to search on</span>
+</span><span class='line'><span class="sd">    */</span>
+</span><span class='line'>     <span class="k">public</span> <span class="k">function</span> <span class="nf">getMemberDataByEmail</span><span class="p">(</span><span class="nv">$email</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$email</span><span class="p">))</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>           <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nv">$memberData</span> <span class="o">=</span> <span class="nb">sprintf</span><span class="p">(</span><span class="s1">&#39;https://%s:%s@%snetFORUMXML.asmx/GetQuery?szObjectName=%s&amp;szColumnList=%s&amp;szWhereClause=%s&amp;szOrderBy=%s&#39;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">,</span>
+</span><span class='line'>           <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">pass</span><span class="p">,</span>
+</span><span class='line'>           <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">xweb</span><span class="p">,</span>
+</span><span class='line'>           <span class="s1">&#39;Individual&#39;</span><span class="p">,</span>
+</span><span class='line'>           <span class="s1">&#39;ind_first_name, ind_last_name, cst_org_name_dn, adr_city, adr_state, eml_address&#39;</span><span class="p">,</span>
+</span><span class='line'>           <span class="nb">sprintf</span><span class="p">(</span><span class="s2">&quot;eml_address = &#39;%s&#39;&quot;</span><span class="p">,</span> <span class="nv">$email</span><span class="p">),</span>
+</span><span class='line'>           <span class="s2">&quot;ind_last_name&quot;</span>
+</span><span class='line'>        <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">simplexml_load_file</span><span class="p">(</span><span class="nv">$memberData</span><span class="p">);</span>
+</span><span class='line'>     <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="sd">/**</span>
+</span><span class='line'><span class="sd">    * Grabs the url of the avectra eweb application</span>
+</span><span class='line'><span class="sd">    */</span>
+</span><span class='line'>     <span class="k">public</span> <span class="k">function</span> <span class="nf">getEwebUrl</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">eweb</span><span class="p">;</span>
+</span><span class='line'>     <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, for example, to retrieve data about a specific member, and to store that data in session variables for later use, your code might look similar to the following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="cp">&lt;?php</span>
+</span><span class='line'>  <span class="k">function</span> <span class="nf">login_success</span><span class="p">(</span><span class="nv">$cst_key</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$cst_key</span><span class="p">)</span>
+</span><span class='line'>     <span class="p">{</span>
+</span><span class='line'>        <span class="c1">//set error message and redirect</span>
+</span><span class='line'>     <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">//ensure clean referer data</span>
+</span><span class='line'>     <span class="nv">$original_referer</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">clean</span><span class="o">-&gt;</span><span class="na">stripScripts</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">params</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">][</span><span class="s1">&#39;ref&#39;</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">//Avectra object</span>
+</span><span class='line'>     <span class="c1">//include avectra class file, for example, in CakePHP</span>
+</span><span class='line'>     <span class="nx">App</span><span class="o">::</span><span class="na">import</span><span class="p">(</span><span class="s1">&#39;Vendor&#39;</span><span class="p">,</span> <span class="s1">&#39;Avectra&#39;</span><span class="p">);</span>
+</span><span class='line'>     <span class="nv">$avectra</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Avectra</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">//ensure a clean customer key</span>
+</span><span class='line'>     <span class="nv">$cst_key</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">clean</span><span class="o">-&gt;</span><span class="na">stripScripts</span><span class="p">(</span><span class="nv">$cst_key</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">//if we successfully load the associated user data</span>
+</span><span class='line'>     <span class="k">if</span><span class="p">(</span><span class="nv">$data</span> <span class="o">=</span> <span class="nv">$avectra</span><span class="o">-&gt;</span><span class="na">getMemberDataByKey</span><span class="p">(</span><span class="nv">$cst_key</span><span class="p">))</span>
+</span><span class='line'>     <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$data</span><span class="o">-&gt;</span><span class="na">IndividualObject</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;Member.memberId&quot;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">clean</span><span class="o">-&gt;</span><span class="na">stripScripts</span><span class="p">(</span><span class="nv">$data</span><span class="o">-&gt;</span><span class="na">eml_address</span><span class="p">));</span>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;Member.firstName&quot;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">clean</span><span class="o">-&gt;</span><span class="na">stripScripts</span><span class="p">(</span><span class="nv">$data</span><span class="o">-&gt;</span><span class="na">ind_first_name</span><span class="p">));</span>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;Member.lastName&quot;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">clean</span><span class="o">-&gt;</span><span class="na">stripScripts</span><span class="p">(</span><span class="nv">$data</span><span class="o">-&gt;</span><span class="na">ind_last_name</span><span class="p">));</span>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;Member.email&quot;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">clean</span><span class="o">-&gt;</span><span class="na">stripScripts</span><span class="p">(</span><span class="nv">$data</span><span class="o">-&gt;</span><span class="na">eml_address</span><span class="p">));</span>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;Member.location&quot;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">clean</span><span class="o">-&gt;</span><span class="na">stripScripts</span><span class="p">(</span><span class="nv">$data</span><span class="o">-&gt;</span><span class="na">adr_city</span> <span class="o">.</span> <span class="s1">&#39;, &#39;</span> <span class="o">.</span> <span class="nv">$data</span><span class="o">-&gt;</span><span class="na">adr_state</span><span class="p">));</span>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;Member.loggedIn&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Session</span><span class="o">-&gt;</span><span class="na">write</span><span class="p">(</span><span class="s2">&quot;Member.customerKey&quot;</span><span class="p">,</span> <span class="nv">$cst_key</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">//indicate successful login and redirect to original referrer</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="p">}</span>
+</span><span class='line'>     <span class="k">else</span>
+</span><span class='line'>     <span class="p">{</span>
+</span><span class='line'>        <span class="c1">//set error message and redirect</span>
+</span><span class='line'>     <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>The SOAP Alternative</h2>
+
+<p>The <a href="http://wiki.avectra.com/index.php?title=XWeb:PHP">Avectra Wiki examples</a> are slanted heavily in the direction of <a href="http://en.wikipedia.org/wiki/SOAP">SOAP</a>, however in this instance I just thought it was overkill. I figured the response was going to come back in XML, so I would just use <a href="simplexml_load_file">simplexml_load_file</a> and pass in the URI. The application lives with Solaris 10 and PHP 5.2. For some reason simplexml_load_file was failing under certain boundary cases that I couldn’t quite pin down. This was an easy fix as I just used <a href="http://us3.php.net/manual/en/function.simplexml-load-string.php">simplexml_load_string</a> and <a href="http://us3.php.net/manual/en/function.file-get-contents.php">file_get_contents</a> to retrieve the xml response. An extra step, but it seemed to solve whatever the issue was that I was having. So, all I needed to do was make sure that I had the properly constructed URI, and that I could authenticate. Authentication is simply handled by sending in the username:password combination as part of the request.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jason Leveille</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-18T20:25:00-04:00" pubdate data-updated="true">Apr 18<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/php/'>PHP</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jason.leveille.us/blog/2008/04/avectra-member-management-api/" data-via="jleveille" data-counturl="http://jason.leveille.us/blog/2008/04/avectra-member-management-api/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/05/javascript-lazy-loading/" title="Next Post: JavaScript Lazy Loading">JavaScript Lazy Loading &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/2012-recap-2013-goals/">2012 Recap, 2013 Goals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app/">Pairing Django and Titanium in a Desktop App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/">CakePHP vs Django vs Rails vs Who Cares - Make a Decision</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/javascript-lazy-loading/">JavaScript Lazy Loading</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/04/avectra-member-management-api/">Avectra Member Management API</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("jleveille", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/jleveille" class="twitter-follow-button" data-show-count="false">Follow @jleveille</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/jason@leve.us?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Jason Leveille -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

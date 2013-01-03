@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: PHP | Jason Leveille]]></title>
+  <link href="http://jason.leveille.us/blog/categories/php/atom.xml" rel="self"/>
+  <link href="http://jason.leveille.us/"/>
+  <updated>2013-01-02T21:48:16-05:00</updated>
+  <id>http://jason.leveille.us/</id>
+  <author>
+    <name><![CDATA[Jason Leveille]]></name>
+    <email><![CDATA[i@leve.us]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Avectra Member Management API]]></title>
+    <link href="http://jason.leveille.us/blog/2008/04/avectra-member-management-api/"/>
+    <updated>2008-04-18T20:25:00-04:00</updated>
+    <id>http://jason.leveille.us/blog/2008/04/avectra-member-management-api</id>
+    <content type="html"><![CDATA[<p>Recently I worked on a project where all member data was being managed through a third party member management service, provided by a company named <a href="http://www.avectra.com/eweb/StartPage.aspx?site=Avectra07">Avectra</a>. The product does more than manage member data from the looks of things, but all I cared about was interaction with the member management API.</p>
+
+<!--more-->
+
+
+<p>I had to authenticate against an external data source, as well as query the data source for member information when needed. Avectra does have a web service API which it has named xWeb. Here is a quote from <a href="http://wiki.avectra.com/index.php?title=NetFORUM">their Wiki</a>:</p>
+
+<p><blockquote><p>xWeb is netFORUM’s XML web services application. netFORUM is an enterprise level Association Management System (AMS) developed by Avectra that allows associations to manage their customers and related activities. netFORUM is used by association staff, members, and the public at large.</p><footer><strong>Avectra</strong> <cite><a href='http://wiki.avectra.com/index.php?title=NetFORUM'>Avectra Wiki</a></cite></footer></blockquote></p>
+
+<h2>Interacting with the API</h2>
+
+<p>After a successful authentication with Avectra, the authenticated user is presented with a token that they pass along with API requests. Pretty standard stuff. The Wiki does an ok job of explaining authentication and login (two different things), therefore I’ll jump right to the good stuff. If you’re stuck on authentication/weblogin please let me know.</p>
+
+<p>For interacting with the API I created a class file to abstract, at least to a small degree, some of the details of consuming the service. Here it is:</p>
+
+<p>``` php
+&lt;?php</p>
+
+<pre><code>/*
+ * @author: Jason Leveille
+ * Provides access to avectra web services
+ */
+
+class Avectra
+{
+
+   //Avectra organization api username and password (not member username/password) to access web services
+   private $user = 'user';
+   private $pass = 'password';
+
+   //Avectra paths to xweb and eweb.  This is handy so that you can easily switch back and fourth between dev and production
+   private $xweb = 'www.mencnet.org/xweb/';
+   private $eweb = 'https://www.mencnet.org/netforummenctest/eweb/';
+
+   /**
+   * Grabs data associated with a member based on customer key / token
+   * @param $cst_key Customer Key to search on
+   */
+   public function getMemberDataByKey($cst_key) {
+
+      if(empty($cst_key))
+      {
+         return false;
+      }
+
+      $memberData = sprintf('https://%s:%s@%snetFORUMXML.asmx/GetIndividualInformation?IndividualKey=%s', $this-&gt;user, $this-&gt;pass, $this-&gt;xweb, $cst_key);
+
+      //The simplest solution is to call simplexml_load_file directly, however this was causing issues on Solaris 10, php 5.2.  Didn't have time to investigate, so I went with load_string
+      //return simplexml_load_file($memberData);
+
+      $data = simplexml_load_string(file_get_contents($memberData));
+
+      //make sure that the returned xml file actually contains data
+      if(empty($data-&gt;IndividualObject[0]-&gt;eml_address))
+      {
+         return false;
+      }
+
+      return $data;
+
+   }
+
+   /**
+   * Grabs data associated with a member based on member email
+   * @param $email Member email to search on
+   */
+   public function getMemberDataByEmail($email) {
+      if(empty($email))
+      {
+         return false;
+      }
+
+      $memberData = sprintf('https://%s:%s@%snetFORUMXML.asmx/GetQuery?szObjectName=%s&amp;szColumnList=%s&amp;szWhereClause=%s&amp;szOrderBy=%s',
+         $this-&gt;user,
+         $this-&gt;pass,
+         $this-&gt;xweb,
+         'Individual',
+         'ind_first_name, ind_last_name, cst_org_name_dn, adr_city, adr_state, eml_address',
+         sprintf("eml_address = '%s'", $email),
+         "ind_last_name"
+      );
+
+      return simplexml_load_file($memberData);
+   }
+
+   /**
+   * Grabs the url of the avectra eweb application
+   */
+   public function getEwebUrl() {
+      return $this-&gt;eweb;
+   }
+}
+?&gt;
+</code></pre>
+
+<p>```</p>
+
+<p>So, for example, to retrieve data about a specific member, and to store that data in session variables for later use, your code might look similar to the following:</p>
+
+<p>``` php
+&lt;?php</p>
+
+<pre><code>function login_success($cst_key = null) {
+
+   if(!$cst_key)
+   {
+      //set error message and redirect
+   }
+
+   //ensure clean referer data
+   $original_referer = $this-&gt;clean-&gt;stripScripts($this-&gt;params['url']['ref']);
+
+   //Avectra object
+   //include avectra class file, for example, in CakePHP
+   App::import('Vendor', 'Avectra');
+   $avectra = new Avectra();
+
+   //ensure a clean customer key
+   $cst_key = $this-&gt;clean-&gt;stripScripts($cst_key);
+
+   //if we successfully load the associated user data
+   if($data = $avectra-&gt;getMemberDataByKey($cst_key))
+   {
+      $data = $data-&gt;IndividualObject[0];
+
+      $this-&gt;Session-&gt;write("Member.memberId", $this-&gt;clean-&gt;stripScripts($data-&gt;eml_address));
+      $this-&gt;Session-&gt;write("Member.firstName", $this-&gt;clean-&gt;stripScripts($data-&gt;ind_first_name));
+      $this-&gt;Session-&gt;write("Member.lastName", $this-&gt;clean-&gt;stripScripts($data-&gt;ind_last_name));
+      $this-&gt;Session-&gt;write("Member.email", $this-&gt;clean-&gt;stripScripts($data-&gt;eml_address));
+      $this-&gt;Session-&gt;write("Member.location", $this-&gt;clean-&gt;stripScripts($data-&gt;adr_city . ', ' . $data-&gt;adr_state));
+      $this-&gt;Session-&gt;write("Member.loggedIn", 1);
+
+      $this-&gt;Session-&gt;write("Member.customerKey", $cst_key); 
+
+      //indicate successful login and redirect to original referrer
+
+   }
+   else
+   {
+      //set error message and redirect
+   }
+}
+</code></pre>
+
+<p>?>
+```</p>
+
+<h2>The SOAP Alternative</h2>
+
+<p>The <a href="http://wiki.avectra.com/index.php?title=XWeb:PHP">Avectra Wiki examples</a> are slanted heavily in the direction of <a href="http://en.wikipedia.org/wiki/SOAP">SOAP</a>, however in this instance I just thought it was overkill. I figured the response was going to come back in XML, so I would just use <a href="simplexml_load_file">simplexml_load_file</a> and pass in the URI. The application lives with Solaris 10 and PHP 5.2. For some reason simplexml_load_file was failing under certain boundary cases that I couldn’t quite pin down. This was an easy fix as I just used <a href="http://us3.php.net/manual/en/function.simplexml-load-string.php">simplexml_load_string</a> and <a href="http://us3.php.net/manual/en/function.file-get-contents.php">file_get_contents</a> to retrieve the xml response. An extra step, but it seemed to solve whatever the issue was that I was having. So, all I needed to do was make sure that I had the properly constructed URI, and that I could authenticate. Authentication is simply handled by sending in the username:password combination as part of the request.</p>
+]]></content>
+  </entry>
+  
+</feed>

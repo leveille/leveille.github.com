@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Lazy Loading - Jason Leveille</title>
+  <meta name="author" content="Jason Leveille">
+
+  
+  <meta name="description" content="I just finished a great Digital Web Magazine article about improving page load times with lazy loading techniques. The article (by Jakob Heuser) was &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jason.leveille.us/blog/2008/05/javascript-lazy-loading/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Jason Leveille" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37280745-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jason Leveille</a></h1>
+  
+    <h2>Web developer, loving life in Southern Maine</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jason.leveille.us" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">JavaScript Lazy Loading</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-07T20:40:00-04:00" pubdate data-updated="true">May 7<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I just finished a great <a href="http://www.digital-web.com/">Digital Web Magazine</a> article about improving page load times with <a href="http://www.digital-web.com/articles/improve_page_performance_with_lazy_loading/">lazy loading techniques</a>. The article (by <a href="http://www.digital-web.com/about/contributors/jakob_heuser">Jakob Heuser</a>) was very well written and described <a href="http://www.digital-web.com/extras/lazy_loading/yui_3types.html">proximity, timeout, and event</a> based lazy loading. If you continue to read you will see how I was able to reduce page load by 300+kb by implementing lazy loading.</p>
+
+<!--more-->
+
+
+<h2>What is Lazy Loading</h2>
+
+<p>Lazy loading, <a href="http://www.martinfowler.com/eaaCatalog/lazyLoad.html">described by Martin Fowler</a> in “<a href="http://www.martinfowler.com/books.html#eaa">Patterns of Enterprise Application Architecture</a>”, is the process by which an object isn’t loaded with data until it is needed. Of course “needed” is subjective to the needs of your application (for example needed in proximity or based on an event). In the context of this article, Jakob Heuser was really talking about lazy loading JavaScript files when they are needed, as opposed to loading them on page load. The loading of the files happens via <a href="http://en.wikipedia.org/wiki/XMLHttpRequest">XHR</a> (therefore the request is subject to the browser <a href="http://en.wikipedia.org/wiki/Same_origin_policy">same origin policy</a>). He provides examples of <a href="http://www.gaiaonline.com/">Gaia Online</a> and <a href="http://www.zimbra.com/">Zimbra</a> who both reduced their page load by 200k+ after implementing lazy loading techniques.</p>
+
+<h2>Lazy Loading and Me</h2>
+
+<p>I have had a few instances over the last month or so where projects I have worked on required some form of lazy loading (<a href="http://www.martinfowler.com/eaaCatalog/lazyLoad.html">Fowler describes 4 flavors</a>).</p>
+
+<h3>Lazy Initialization</h3>
+
+<blockquote><p>uses a special marker value (usually null) to indicate a field isn’t loaded. Every access to the field checks the field for the marker value and if unloaded, loads it.</p><footer><strong>Martin Fowler</strong> <cite><a href='http://www.martinfowler.com/eaaCatalog/lazyLoad.html'>Lazy Load</a></cite></footer></blockquote>
+
+
+<p>In my first example (original blog post - no longer accessible), I had the need to display <a href="http://www.timeanddate.com/library/abbreviations/timezones/na/est.html">EST</a>/<a href="http://www.timeanddate.com/library/abbreviations/timezones/na/edt.html">EDT</a> time via JavaScript, regardless of the location of the client. The solution of course is to pull in a timestamp from the server (whose time is in EST/EDT), and feed that to the JavaScript Date constructor. From there, all that is needed is a <a href="http://developer.mozilla.org/en/docs/DOM:window.setInterval">setInterval</a>, called every 1 second, and an increment of the timestamp variable by 1 second.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">TIME</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">milliseconds</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">construct</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>            <span class="c1">//lazy load milliseconds</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">milliseconds</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s2">&quot;time.php&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">){</span>
+</span><span class='line'>
+</span><span class='line'>                    <span class="c1">//ensure that we are getting the proper data</span>
+</span><span class='line'>                    <span class="k">if</span><span class="p">(</span><span class="nx">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">zone</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">timestamp</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                       <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#time .zone&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">zone</span><span class="p">);</span>
+</span><span class='line'>                       <span class="nx">milliseconds</span> <span class="o">=</span> <span class="nx">r</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">timestamp</span><span class="p">;</span>
+</span><span class='line'>                       <span class="nx">TIME</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">milliseconds</span><span class="p">));</span>
+</span><span class='line'>                       <span class="nb">window</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;TIME.construct()&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'>                    <span class="p">}</span>
+</span><span class='line'>                    <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                       <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>                    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="p">});</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                <span class="nx">TIME</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">milliseconds</span><span class="p">));</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">time</span><span class="p">){</span>
+</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#time .time&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">());</span>
+</span><span class='line'>            <span class="nx">milliseconds</span> <span class="o">+=</span> <span class="mi">1000</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">};</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the case of the code above, milliseconds starts at null. In the construct method a check is performed to see if milliseconds is null or not. If it is, an XHR request is made to time.php to pull in a timestamp (measured in milliseconds). The first call to construct updates the time display, assigns a value to milliseconds, and sets up the setInterval for TIME.construct(), at a frequency of 1000 milliseconds (1 second). With the second call to TIME.construct(), because the milliseconds variable is already loaded, another XHR request is not necessary. Instead, all that is needed is a call to TIME.update(), and the construction of a new Date object. Piece of cake. So, in this instance, lazy initialization enhanced the application because it provided a means for checking whether or not an XHR request should be made to obtain a timestamp, or if a timestamp already existed.</p>
+
+<h3>ghost</h3>
+
+<blockquote><p>A ghost is the real object without any data. The first time you call a method the ghost loads the full data into its fields.</p><footer><strong>Martin Fowler</strong> <cite><a href='http://www.martinfowler.com/eaaCatalog/lazyLoad.html'>Lazy Load</a></cite></footer></blockquote>
+
+
+<p>This second example is more along the lines of those provided in the Digital Web article, however it is even more simplified. In this case, what I actually have is a combination of ghost and lazy initialization (leaning more in the direction of lazy initialization). The application in which I implemented this bit of code required most of the UI to be constructed through JavaScript. Part of the application requires the implementation of <a href="http://get.live.com/messenger/overview">Windows Live Messanger</a> for tech support purposes. This portion of the application is not visible on page load, and is only available on request. Initially I was loading the JavaScript/CSS/Image files on page load, and the application was suffering a significant performance hit as a result. I don’t have exact numbers, but Windows Live Messanger has in excess of 300+k of JavaScript/CSS/Image files, and I was loading them (via requests for the resources through an iframe) on page load. As you can imagine, the rest of the application was suffering. It was sluggish and unresponsive for seconds at a time.</p>
+
+<blockquote><p>Through the implementation of lazy loading (tied to a click event), I was able to do away with this initial 300+k load, and garner significant page responsiveness.</p></blockquote>
+
+
+<p>The goodies:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">msnPayLoad</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">setupLiveMessangerChat</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">if</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">playerMode</span><span class="p">.</span><span class="nx">isLive</span><span class="p">)</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;a#activate-chat&#39;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">(</span>
+</span><span class='line'>         <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">//lazy load msn javascript</span>
+</span><span class='line'>            <span class="c1">//this payload is only needed if the user actually clicks on the live support link</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">msnPayLoad</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>               <span class="nx">msnPayLoad</span> <span class="o">=</span> <span class="nx">activateMsnJavascript</span><span class="p">;</span>
+</span><span class='line'>               <span class="nx">msnPayLoad</span><span class="p">();</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#support&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#activate-chat&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;Close Live Support&#39;</span><span class="p">);</span>
+</span><span class='line'>         <span class="p">},</span>
+</span><span class='line'>         <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#support&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</span><span class='line'>            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#activate-chat&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s1">&#39;Open Live Support&#39;</span><span class="p">);</span>
+</span><span class='line'>         <span class="p">}</span>
+</span><span class='line'>      <span class="p">);</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'>   <span class="k">else</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#support&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">activateMsnJavascript</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>   <span class="c1">//Grab the necessary scripts for live chat</span>
+</span><span class='line'>   <span class="nx">$</span><span class="p">.</span><span class="nx">getScript</span><span class="p">(</span><span class="s2">&quot;http://settings.messenger.live.com/controls/1.0/PresenceButton.js&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">.</span><span class="nx">getScript</span><span class="p">(</span><span class="s2">&quot;http://messenger.services.live.com/users/etc&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>         <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#support div.support&quot;</span><span class="p">).</span><span class="nx">load</span><span class="p">(</span><span class="s2">&quot;core/section-includes/live-messanger-chat.inc.htm?stamp=&quot;</span> <span class="o">+</span> <span class="nx">getStamp</span><span class="p">());</span>
+</span><span class='line'>      <span class="p">})</span>
+</span><span class='line'>   <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the case of the above example, I have a null payload variable, which is loaded when the activate chat link is clicked the first time. During this time a call is also made to activateMsnJavascript(), and 300kb+ of files join the party.</p>
+
+<h2>I’m so loaded man</h2>
+
+<p>So, I hope if you’ve gotten anything from this article it is that employing lazy loading techniques doesn’t have to be hard. What it might bring to your application table is well worth the time it will take to investigate this very interesting topic.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jason Leveille</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-07T20:40:00-04:00" pubdate data-updated="true">May 7<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jason.leveille.us/blog/2008/05/javascript-lazy-loading/" data-via="jleveille" data-counturl="http://jason.leveille.us/blog/2008/05/javascript-lazy-loading/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/04/avectra-member-management-api/" title="Previous Post: Avectra Member Management API">&laquo; Avectra Member Management API</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/" title="Next Post: CakePHP vs Django vs Rails vs Who Cares - Make a Decision">CakePHP vs Django vs Rails vs Who Cares - Make a Decision &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/2012-recap-2013-goals/">2012 Recap, 2013 Goals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app/">Pairing Django and Titanium in a Desktop App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/">CakePHP vs Django vs Rails vs Who Cares - Make a Decision</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/javascript-lazy-loading/">JavaScript Lazy Loading</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/04/avectra-member-management-api/">Avectra Member Management API</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("jleveille", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/jleveille" class="twitter-follow-button" data-show-count="false">Follow @jleveille</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/jason@leve.us?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Jason Leveille -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

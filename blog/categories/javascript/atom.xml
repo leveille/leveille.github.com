@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: JavaScript | Jason Leveille]]></title>
+  <link href="http://jason.leveille.us/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://jason.leveille.us/"/>
+  <updated>2013-01-02T21:48:16-05:00</updated>
+  <id>http://jason.leveille.us/</id>
+  <author>
+    <name><![CDATA[Jason Leveille]]></name>
+    <email><![CDATA[i@leve.us]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[JavaScript Lazy Loading]]></title>
+    <link href="http://jason.leveille.us/blog/2008/05/javascript-lazy-loading/"/>
+    <updated>2008-05-07T20:40:00-04:00</updated>
+    <id>http://jason.leveille.us/blog/2008/05/javascript-lazy-loading</id>
+    <content type="html"><![CDATA[<p>I just finished a great <a href="http://www.digital-web.com/">Digital Web Magazine</a> article about improving page load times with <a href="http://www.digital-web.com/articles/improve_page_performance_with_lazy_loading/">lazy loading techniques</a>. The article (by <a href="http://www.digital-web.com/about/contributors/jakob_heuser">Jakob Heuser</a>) was very well written and described <a href="http://www.digital-web.com/extras/lazy_loading/yui_3types.html">proximity, timeout, and event</a> based lazy loading. If you continue to read you will see how I was able to reduce page load by 300+kb by implementing lazy loading.</p>
+
+<!--more-->
+
+
+<h2>What is Lazy Loading</h2>
+
+<p>Lazy loading, <a href="http://www.martinfowler.com/eaaCatalog/lazyLoad.html">described by Martin Fowler</a> in “<a href="http://www.martinfowler.com/books.html#eaa">Patterns of Enterprise Application Architecture</a>”, is the process by which an object isn’t loaded with data until it is needed. Of course “needed” is subjective to the needs of your application (for example needed in proximity or based on an event). In the context of this article, Jakob Heuser was really talking about lazy loading JavaScript files when they are needed, as opposed to loading them on page load. The loading of the files happens via <a href="http://en.wikipedia.org/wiki/XMLHttpRequest">XHR</a> (therefore the request is subject to the browser <a href="http://en.wikipedia.org/wiki/Same_origin_policy">same origin policy</a>). He provides examples of <a href="http://www.gaiaonline.com/">Gaia Online</a> and <a href="http://www.zimbra.com/">Zimbra</a> who both reduced their page load by 200k+ after implementing lazy loading techniques.</p>
+
+<h2>Lazy Loading and Me</h2>
+
+<p>I have had a few instances over the last month or so where projects I have worked on required some form of lazy loading (<a href="http://www.martinfowler.com/eaaCatalog/lazyLoad.html">Fowler describes 4 flavors</a>).</p>
+
+<h3>Lazy Initialization</h3>
+
+<p><blockquote><p>uses a special marker value (usually null) to indicate a field isn’t loaded. Every access to the field checks the field for the marker value and if unloaded, loads it.</p><footer><strong>Martin Fowler</strong> <cite><a href='http://www.martinfowler.com/eaaCatalog/lazyLoad.html'>Lazy Load</a></cite></footer></blockquote></p>
+
+<p>In my first example (original blog post - no longer accessible), I had the need to display <a href="http://www.timeanddate.com/library/abbreviations/timezones/na/est.html">EST</a>/<a href="http://www.timeanddate.com/library/abbreviations/timezones/na/edt.html">EDT</a> time via JavaScript, regardless of the location of the client. The solution of course is to pull in a timestamp from the server (whose time is in EST/EDT), and feed that to the JavaScript Date constructor. From there, all that is needed is a <a href="http://developer.mozilla.org/en/docs/DOM:window.setInterval">setInterval</a>, called every 1 second, and an increment of the timestamp variable by 1 second.</p>
+
+<p>``` javascript
+var TIME = function(){</p>
+
+<pre><code>var milliseconds = null;
+
+return {
+
+    construct: function(){
+        //lazy load milliseconds
+        if (!milliseconds) {
+
+            $.getJSON("time.php", function(r){
+
+                //ensure that we are getting the proper data
+                if(r[0].zone &amp;&amp; r[0].timestamp) {
+                   $("#time .zone").html(r[0].zone);
+                   milliseconds = r[0].timestamp;
+                   TIME.update(new Date(milliseconds));
+                   window.setInterval("TIME.construct()", 1000);
+                }
+                else {
+                   return;
+                }
+
+            });
+        }
+        else {
+            TIME.update(new Date(milliseconds));
+        }
+    },
+
+    update: function(time){
+        $("#time .time").html(time.toLocaleTimeString());
+        milliseconds += 1000;
+    }
+};
+</code></pre>
+
+<p>}
+();
+```</p>
+
+<p>In the case of the code above, milliseconds starts at null. In the construct method a check is performed to see if milliseconds is null or not. If it is, an XHR request is made to time.php to pull in a timestamp (measured in milliseconds). The first call to construct updates the time display, assigns a value to milliseconds, and sets up the setInterval for TIME.construct(), at a frequency of 1000 milliseconds (1 second). With the second call to TIME.construct(), because the milliseconds variable is already loaded, another XHR request is not necessary. Instead, all that is needed is a call to TIME.update(), and the construction of a new Date object. Piece of cake. So, in this instance, lazy initialization enhanced the application because it provided a means for checking whether or not an XHR request should be made to obtain a timestamp, or if a timestamp already existed.</p>
+
+<h3>ghost</h3>
+
+<p><blockquote><p>A ghost is the real object without any data. The first time you call a method the ghost loads the full data into its fields.</p><footer><strong>Martin Fowler</strong> <cite><a href='http://www.martinfowler.com/eaaCatalog/lazyLoad.html'>Lazy Load</a></cite></footer></blockquote></p>
+
+<p>This second example is more along the lines of those provided in the Digital Web article, however it is even more simplified. In this case, what I actually have is a combination of ghost and lazy initialization (leaning more in the direction of lazy initialization). The application in which I implemented this bit of code required most of the UI to be constructed through JavaScript. Part of the application requires the implementation of <a href="http://get.live.com/messenger/overview">Windows Live Messanger</a> for tech support purposes. This portion of the application is not visible on page load, and is only available on request. Initially I was loading the JavaScript/CSS/Image files on page load, and the application was suffering a significant performance hit as a result. I don’t have exact numbers, but Windows Live Messanger has in excess of 300+k of JavaScript/CSS/Image files, and I was loading them (via requests for the resources through an iframe) on page load. As you can imagine, the rest of the application was suffering. It was sluggish and unresponsive for seconds at a time.</p>
+
+<p><blockquote><p>Through the implementation of lazy loading (tied to a click event), I was able to do away with this initial 300+k load, and garner significant page responsiveness.</p></blockquote></p>
+
+<p>The goodies:</p>
+
+<p>``` javascript
+var msnPayLoad = null;</p>
+
+<p>...</p>
+
+<p>function setupLiveMessangerChat() {</p>
+
+<p>   if(config.playerMode.isLive)
+   {</p>
+
+<pre><code>  $('a#activate-chat').toggle(
+     function () {
+
+        //lazy load msn javascript
+        //this payload is only needed if the user actually clicks on the live support link
+        if(!msnPayLoad)
+        {
+           msnPayLoad = activateMsnJavascript;
+           msnPayLoad();
+        }
+
+        $('#support').show();
+        $('#activate-chat').html('Close Live Support');
+     },
+     function () {
+        $('#support').hide();
+        $('#activate-chat').html('Open Live Support');
+     }
+  );
+</code></pre>
+
+<p>   }
+   else
+   {</p>
+
+<pre><code>  $('#support').hide();
+</code></pre>
+
+<p>   }
+}</p>
+
+<p>...</p>
+
+<p>function activateMsnJavascript() {
+   //Grab the necessary scripts for live chat
+   $.getScript("http://settings.messenger.live.com/controls/1.0/PresenceButton.js", function(){</p>
+
+<pre><code>  $.getScript("http://messenger.services.live.com/users/etc", function(){
+     $("#support div.support").load("core/section-includes/live-messanger-chat.inc.htm?stamp=" + getStamp());
+  })
+</code></pre>
+
+<p>   });
+}
+```</p>
+
+<p>In the case of the above example, I have a null payload variable, which is loaded when the activate chat link is clicked the first time. During this time a call is also made to activateMsnJavascript(), and 300kb+ of files join the party.</p>
+
+<h2>I’m so loaded man</h2>
+
+<p>So, I hope if you’ve gotten anything from this article it is that employing lazy loading techniques doesn’t have to be hard. What it might bring to your application table is well worth the time it will take to investigate this very interesting topic.</p>
+]]></content>
+  </entry>
+  
+</feed>

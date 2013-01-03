@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Django | Jason Leveille]]></title>
+  <link href="http://jason.leveille.us/blog/categories/django/atom.xml" rel="self"/>
+  <link href="http://jason.leveille.us/"/>
+  <updated>2013-01-02T21:48:16-05:00</updated>
+  <id>http://jason.leveille.us/</id>
+  <author>
+    <name><![CDATA[Jason Leveille]]></name>
+    <email><![CDATA[i@leve.us]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Pairing Django and Titanium in a Desktop App]]></title>
+    <link href="http://jason.leveille.us/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app/"/>
+    <updated>2010-02-17T21:07:00-05:00</updated>
+    <id>http://jason.leveille.us/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app</id>
+    <content type="html"><![CDATA[<p>Over the past four months I have been doing a lot of work in Python and Django. Naturally, while recently playing around with <a href="http://www.appcelerator.com/products/titanium-desktop-application-development/">Appcelerator Titanium Desktop</a> (which seems to have good Python support), I wanted to see how Django and Titanium would pair.</p>
+
+<h2>Assumptions</h2>
+
+<ol>
+<li><a href="http://www.appcelerator.com/products/download/">Titanium installed</a></li>
+<li><a href="http://docs.djangoproject.com/en/dev/topics/install/">Django installed</a></li>
+</ol>
+
+
+<h2>What Worked</h2>
+
+<p>Over the course of a few hours, I was able to accomplish the following:</p>
+
+<ul>
+<li>Django Template integration</li>
+<li>Django ORM interaction</li>
+<li>Titanium Database communication with the Django DB (SQLite) defined in settings.py</li>
+</ul>
+
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="/assets/leveille-django-titanium-7da2c38.tar.gz">Source Files</a></li>
+</ul>
+
+
+<h2>Directory Layout</h2>
+
+<p><img src="https://www.evernote.com/shard/s33/sh/06d56a74-d35e-419e-840f-13cc9ab3dc22/9e3f959c495e5f348d463c6882dd7f75/res/8d23c11d-590c-404f-a1e7-d5b3dd480110.jpg?resizeSmall&amp;width=832"></p>
+
+<h2>Creating the Project</h2>
+
+<p>When a Titanium Desktop application (with Python support) is running, the Resources directory for the application is placed in the system Python path. Therefore, my first step was to place the main django directory in Resources. From there, I navigated to Resources and executed the startproject command:</p>
+
+<p><code>
+$ django-admin.py startproject test_project
+</code></p>
+
+<p>Next, I updated settings.py with information about my test database:</p>
+
+<p>``` python
+import os
+DATABASES ={</p>
+
+<pre><code>'default':{
+    'ENGINE':'django.db.backends.sqlite3',
+    'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)),'test_project.db'),
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>I made sure to include the full path to my test_project.db database, knowing that I would eventually need to refer to this path for Titanium Database support. Finally, I executed my syncdb command from within my test_project directory:</p>
+
+<p><code>
+$ ./manage.py syncdb
+</code></p>
+
+<p>When prompted, I added a superuser account for myself.</p>
+
+<h2>Django Template Integration</h2>
+
+<p>Template integration was pretty smooth. What follows is a scaled down version of my index.html resource, and its associated files:</p>
+
+<p>Resources >> <strong>index.html</strong></p>
+
+<p>``` javascript
+//Yes,this is all I have inmy main index.html resource</p>
+
+<script type="text/python">             
+    from test_project.contrib.template import index
+    document.write(index())
+</script>
+
+
+<p>```</p>
+
+<p>Resources >> test_project >> contrib >> <strong>template.py</strong></p>
+
+<p>``` python
+def index():</p>
+
+<pre><code>kwargs ={'foo':'bar'}
+return _render_template('index',**kwargs)
+</code></pre>
+
+<p>def _render_template(template_name,**kwargs):</p>
+
+<pre><code>from django.templateimport loader,Context
+t = loader.get_template('%s.html'% template_name)
+c =Context(kwargs)
+return t.render(c)
+</code></pre>
+
+<p>```</p>
+
+<p>Resources >> test_project >> templates >> <strong>base.html</strong>, <strong>index.html</strong></p>
+
+<p><div><script src='https://gist.github.com/4440297.js'></script>
+<noscript><pre><code>{% block py_imports %}{% endblock %}
+&lt;!DOCTYPE html&gt;
+&lt;html dir=&quot;ltr&quot; lang=&quot;en-US&quot;&gt;
+    &lt;head&gt;
+        &lt;title&gt;{% block title %}{% endblock %}|TitaniumTesting&lt;/title&gt;
+        &lt;script type=&quot;text/javascript&quot; src=&quot;jquery-1.3.2.js&quot;&gt;&lt;/script&gt;
+        {% block js %}{% endblock %}
+    &lt;/head&gt;
+    &lt;body&gt;
+        {% block content %}{% endblock %}
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre></noscript></div>
+</p>
+
+<p><div><script src='https://gist.github.com/4440303.js'></script>
+<noscript><pre><code># index.html
+{%extends&quot;base.html&quot;%}
+{% block title %}TemplateCommunication{{ block.super}}{% endblock %}
+{% block content %}
+    &lt;strong&gt;Foo&lt;/strong&gt;:{{ foo }}&lt;!--Prints bar --&gt;
+{% endblock %}</code></pre></noscript></div>
+</p>
+
+<h2>Database Communication</h2>
+
+<p>Database communication also went fairly smooth (though I did get tripped up trying to find a method to use an existing SQLite db for Titanium ... ultimately the following worked for me:</p>
+
+<p><code>
+Titanium.Database.openFile('/path/to/db'))
+</code></p>
+
+<p>What follows are the code snippets which represent successful communication with the DB via Django, and via the Titanium Database API:</p>
+
+<p>Resources >> test_project >> contrib >> <strong>db.py</strong>, <strong>user.py</strong></p>
+
+<p><div><script src='https://gist.github.com/4440318.js'></script>
+<noscript><pre><code># db.py
+def py_get_db():
+    from test_project import settings
+    return settings.DATABASES['default']['NAME']
+</code></pre></noscript></div>
+</p>
+
+<p><div><script src='https://gist.github.com/4440319.js'></script>
+<noscript><pre><code># user.py
+def py_update_name(username, first_name, last_name):
+    from django.contrib.auth.models importUser
+    user =User.objects.get(username=username)
+    user.first_name = first_name
+    user.last_name = last_name
+    user.save()
+
+def py_get_full_name(username):
+    from django.contrib.auth.models importUser
+    user =User.objects.get(username=username)
+    return user.get_full_name()</code></pre></noscript></div>
+</p>
+
+<p>Resources >> test_project >> templates >> <strong>index.html</strong> (full version)</p>
+
+<p><div><script src='https://gist.github.com/4440328.js'></script>
+<noscript><pre><code>{%extends&quot;base.html&quot;%}
+
+{% block title %}DatabaseCommunication{{ block.super}}{% endblock %}
+
+{% block py_imports %}
+&lt;script type=&quot;text/python&quot;&gt;             
+from test_project.contrib.user import py_update_name, py_get_full_name
+from test_project.contrib.db import py_get_db
+&lt;/script&gt;
+{% endblock %}
+
+{% block js %}
+    &lt;script&gt;
+        var username = 'leveille';
+        var first_name = 'Jason'
+        var last_name = 'Leveille'
+        
+        /**
+         *TellDjango to update user first/last name
+         */
+        py_update_name(username, first_name, last_name);
+        
+        $(document).ready(function(){
+            /**
+             *UseDjango to query the auth database
+             *andreturn the user fullname
+             */
+            var $test_1 = $('#test_1');
+            $('button', $test_1).bind('click', function(){
+               $('.result', $test_1).text(py_get_full_name(username)); 
+            });
+            
+            var $test_2 = $('#test_2');
+            $('button', $test_2).bind('click', function(){
+                var val = 'Empty result set';
+                try {
+                    var db = Titanium.Database.openFile(py_get_db());
+                    var rs = db.execute(
+                        &quot;SELECT first_name, last_name FROM auth_user &quot; 
+                        + &quot;WHERE username = '&quot; 
+                        + username 
+                        + &quot;'&quot;
+                    );
+                    if(rs.isValidRow()){
+                        val = rs.field(0) + ' ' + rs.field(1);
+                    }
+                } catch (err) {
+                    val = err;
+                } finally {
+                    rs.close();
+                    db.close();
+                    $('.result', $test_2).text(val);
+                }
+            });
+        });            
+    &lt;/script&gt;
+{% endblock %}
+
+{% block content %}
+    &lt;div id=&quot;test_1&quot;&gt;
+        &lt;h1&gt;Test1&lt;/h1&gt;
+        &lt;p&gt;
+            &lt;button&gt;Django Query for my Full Name&lt;/button&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;strong&gt;Result&lt;/strong&gt;: 
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;test_2&quot;&gt;
+        &lt;h1&gt;Test2&lt;/h1&gt;
+        &lt;p&gt;
+            &lt;button&gt;Titanium Query for my Full Name&lt;/button&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;strong&gt;Result&lt;/strong&gt;: 
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;test_3&quot;&gt;
+        &lt;h1&gt;Test3&lt;/h1&gt;
+        &lt;p&gt;
+            Passing Template Variables
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;strong&gt;Foo&lt;/strong&gt;: {{ foo }}
+        &lt;/p&gt;
+    &lt;/div&gt;
+{% endblock %}</code></pre></noscript></div>
+</p>
+
+<h2>The Result</h2>
+
+<p><img src="https://www.evernote.com/shard/s33/sh/06d56a74-d35e-419e-840f-13cc9ab3dc22/9e3f959c495e5f348d463c6882dd7f75/res/bba35d6b-fa73-45f5-873b-e278c340cda5.jpg?resizeSmall&amp;width=832"></p>
+
+<p>If you have experience playing around with these two playfellows, feel free to share them here.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CakePHP vs Django vs Rails vs Who Cares - Make a Decision]]></title>
+    <link href="http://jason.leveille.us/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/"/>
+    <updated>2009-02-11T20:54:00-05:00</updated>
+    <id>http://jason.leveille.us/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision</id>
+    <content type="html"><![CDATA[<p>As someone who:</p>
+
+<ol>
+<li>has made a framework choice, and developed numerous projects on that framework (<a href="http://cakephp.org/">CakePHP</a>) and,</li>
+<li>is always <a href="http://www.djangoproject.com/">poking</a> <a href="http://pylonshq.com/">around</a> <a href="http://rubyonrails.org/">with</a> <a href="http://framework.zend.com/">other</a> <a href="http://codeigniter.com/">frameworks</a></li>
+</ol>
+
+
+<p>I am often asked about the tough choice of picking among all the great framework choices (both in and out of the PHP world).  My advice is always the same.</p>
+
+<h2>Who Cares - Make a Decision</h2>
+
+<p>Getting stuck in <a href="http://www.google.com/search?hl=en&amp;q=which+framework+should+I+choose&amp;btnG=Google+Search&amp;aq=f&amp;oq=which+framework+should+I+choos">choice limbo</a> is bad for many reasons.  Perhaps the biggest one of all has to do with inaction.  If you are unsure which framework to choose from, chances are pretty good you’re not writing code or being as productive as you could be.  If you’re not writing code than you’re not starting the process of getting over one or more learning curves (every framework will carry a learning curve ... if you choose a framework outside of a language you are familiar with, than you’ll have many learning curves to get over).</p>
+
+<h2>Go Easy on Yourself</h2>
+
+<p>I would recommend selecting a framework in a language that you are already familiar with.  If you are a PHP person, choose a <a href="http://www.google.com/search?hl=en&amp;q=php+frameworks&amp;btnG=Search">PHP framework</a>.  If you are a Python person, choose a <a href="http://www.google.com/search?hl=en&amp;q=python+frameworks&amp;btnG=Search">Python framework</a>.  If you are a Ruby person, choose a <a href="http://www.google.com/search?hl=en&amp;q=ruby+frameworks&amp;btnG=Search">Ruby framework</a>.  Just pick one and go with it, but don’t make the task any more difficult than it needs to be.</p>
+
+<h2>Life After a Few Applications</h2>
+
+<p>You won’t get anywhere with your choice unless you write a few applications with your chosen framework.  You’ll find (and this is the good part), that after you gain the confidence you can only gain by getting your hands dirty, you’ll more easily be able to transition into another framework.  Once you gain a firm grasp on the concepts of <a href="http://en.wikipedia.org/wiki/Model-view-controller">MVC</a>, it’s amazing how familiar other MVC frameworks will look.  If after a few projects you feel as though you’ve made a poor choice, choose something else.  Your new found confidence and experience should make the transition much less painful.</p>
+
+<h2>Should you Choose a Framework</h2>
+
+<p>If you look for them, you’ll find more <a href="http://www.google.com/search?hl=en&amp;q=frameworks+suck&amp;btnG=Search">opinions</a> <a href="http://www.sitepoint.com/blogs/2008/08/29/rasmus-lerdorf-php-frameworks-think-again/">regarding</a> frameworks than you could possibly care to read.  My personal feeling is that:</p>
+
+<ol>
+<li>unless you are writing an application that can’t afford the performance penalty that is likely to come along with any framework (perhaps &lt; .005% of applications on the Internet are in this category, and congratulations if you are working on one), <strong>or</strong></li>
+<li>you are working on an application that doesn’t need a framework to begin with, <strong>or</strong></li>
+<li>you shouldn’t be writing a custom application (when perhaps the best thing you can do for your client is choose a proven CMS ... one that eases content management/maintenance/etc) <strong>than</strong></li>
+</ol>
+
+
+<p>Yes, you should choose a framework.  A good framework will help you stay organized, will remove a lot of mundane (but won’t remove the need for you to be responsible!), and will come packaged with proven, maintained, debuged, tested, cared for, etc, code.</p>
+
+<h2>You’re Also Choosing a Community</h2>
+
+<p>It’s not all about the code.  Though a framework won’t do your job for you, it can help you be better at your job.  Part of getting better is learning, and choosing a framework with a good community will help you learn.  Whatever you choose, either be involved or observe the community.  Admittedly, I am not very involved in the <a href="http://groups.google.com/group/cake-php">CakePHP</a> community (for many reasons ... including the fact that I develop in .Net, Classic ASP, and Python).  But I am constantly observing the community.  I receive a daily digest of Google Group postings, I occasionally follow conversations on IRC, and I read ~20 blogs having something to do with CakePHP.  I follow the community even though it’s been more than 2 months since I’ve developed in CakePHP.  I’ve made a commitment to this framework and I would be doing myself a disservice by not maintaining some sort of connection to the community.</p>
+
+<h2>Last Thoughts</h2>
+
+<p>In case I haven’t been clear about this: JUST MAKE A CHOICE and don’t worry about it.  Just make a choice and develop a few real applications with your choice.  If you’re worried about making the wrong choice, don’t be.  If you’re asking if you should choose framework X or framework Y, than you’re wasting time.  Making a choice is liberating.  Liberate yourself and start coding.</p>
+
+<p>Even though you are choosing a framework, never stop learning/reading the language in which the framework is written.  I sometimes code with CakePHP, however I read PHP books/blogs/magazines that have nothing to do with CakePHP.  I read programming books/blogs/magazines so that I can be a better developer.  Try to remember that you are a programmer first; you are a PHP/Python/PERL/Ruby/etc programmer second; and you are a CakePHP/Django/Rails/etc developer third.</p>
+]]></content>
+  </entry>
+  
+</feed>

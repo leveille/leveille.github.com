@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Goals | Jason Leveille]]></title>
+  <link href="http://jason.leveille.us/blog/categories/goals/atom.xml" rel="self"/>
+  <link href="http://jason.leveille.us/"/>
+  <updated>2013-01-02T21:48:16-05:00</updated>
+  <id>http://jason.leveille.us/</id>
+  <author>
+    <name><![CDATA[Jason Leveille]]></name>
+    <email><![CDATA[i@leve.us]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[2012 Recap, 2013 Goals]]></title>
+    <link href="http://jason.leveille.us/blog/2013/01/2012-recap-2013-goals/"/>
+    <updated>2013-01-02T07:30:00-05:00</updated>
+    <id>http://jason.leveille.us/blog/2013/01/2012-recap-2013-goals</id>
+    <content type="html"><![CDATA[<h2>2012 Recap</h2>
+
+<p>Of all the highlights of 2012 (there are a lot, only a fraction of which will be here), my family has been the best part of my year.  My wife is a rock and helped me through some personal struggles.  My girls (6 and 3) never fail to make me laugh.  They're both at such fun ages.  We spent more time this summer upta camp which was a nice change from 2011.  I'm already looking forward to opening up camp this Spring.</p>
+
+<!--more-->
+
+
+<p>In July I biked 200 miles from Seattle, WA to Portland, OR over 2 days.  I spent the first part of the year getting ready for that ride and I really enjoyed the exercise.  I had multiple weeks where my bicycle mile count was over 100, and a few weeks where I was scratching at 200 miles.  The <a href="https://shop.cascade.org/content/events/stp-details">STP ride</a> was challenging and fun.  Most important, I got to spend a lot of time with my younger brother (though he was mostly at my back wheel).  With all of that said ... I spent the last part of 2012 getting fat and sitting on my ass.  That certainly has to change in 2013.</p>
+
+<p>I read ~10 books this year (not including technical books).  My favorite book in 2012 was <a href="http://www.amazon.com/Unbroken-World-Survival-Resilience-Redemption/dp/1400064163/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1357156649&amp;sr=1-1&amp;keywords=unbroken">Unbroken</a> by Laura Hillenbrand.  The story of Louis Zamperini is incredible.  My second favorite read was <a href="http://www.amazon.com/John-Dies-End-David-Wong/dp/1250035953/ref=sr_1_1?ie=UTF8&amp;qid=1357156544&amp;sr=8-1&amp;keywords=david+wong+john+dies+at+the+end">John Dies at the End</a> by David Wong.</p>
+
+<h3>Professionally</h3>
+
+<p>For the past 3 years I've enjoyed working from home, especially now that I get out of the house 2-3 times a week and find different spots to flex my terminal.  Speaking of work, I worked for <a href="http://sprucemedia.com/">Spruce Media</a> until the end of September.  The ~19 months I worked for Spruce were awesome ... the talent level there is crazy and the people were great.  Leaving Spruce was a difficult decision, but it was the right one for me.  The guy who looks like he's <a href="http://sprucemedia.com/about">all head and one shoulder</a> in this pic (Chad) has been a great friend of mine (like a brother) for a long time.  Getting to work with him was incroyable.</p>
+
+<p>In October I started working for the <a href="http://nationalpriorities.org/">National Priorities Project</a> (NPP) and I'm really enjoying the work.  Not only am I learning a lot about the budget process, but I'm once again working with some great people (really high on the pre-req list for anyplace I work).  I'm still a web developer (just in case you thought I was now an economist or something).  I spend most of my time in a terminal window wrangling servers and writing code.  I've always had the desire to do work that provides greater value to society.  NPP is helping me achieve that goal.</p>
+
+<p>This year I completed more contract work than ever before.  Most notably, I built an e-commerce and reporting solution for <a href="https://secure.winterkids.org/">WinterKids</a>.  WinterKids is a great Maine non-profit which helps children develop healthy lifelong habits through fun, outdoor winter activity.  The work itself was rewarding (it was my first time working with <a href="http://stripe.com/">Stripe</a>), however the real reward is helping the children ... 'cause I believe the children are our future.</p>
+
+<h2>2013 Goals</h2>
+
+<p>In no particular order:</p>
+
+<ul>
+<li>Do a much better job of unplugging at night</li>
+<li>Write one blog article per month</li>
+<li>More Twitter</li>
+<li>Get down to 180 and maintain that weight</li>
+<li>Read more blog articles (and actually leave comments and take part in the discussion)</li>
+<li>Start to contribute to an open source project (even if that means answering questions and getting back on IRC)</li>
+<li>Create something with Node.js (maybe I'll actually read this book I have)</li>
+<li>Exercise</li>
+<li>Learn at least one new language</li>
+<li>Learn to fly my remote control helicopter from the basement of my house to the attic (challenge accepted) ... BTW, thanks <a href="http://newrelic.com">New Relic</a> for the free chopper!</li>
+<li>Learn VIM (even though I've been passively using VIM for ~5 years)</li>
+<li>More TMUX</li>
+<li>Read more zombie books</li>
+<li>Learn more about the wine I'm drinking</li>
+</ul>
+
+
+<p>SIDE NOTE: Did I ever mention that in 2010 my resolution was to go the entire year w/out eating dessert?  I made it to October 18th, when I had myself a fat ice cream with my oldest daughter.  I figured I deserved it.  If I can do that, I should be able to meet these goals.</p>
+]]></content>
+  </entry>
+  
+</feed>
