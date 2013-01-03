@@ -1,3 +1,23 @@
-<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  {% capture image %}{% if page.image %}{{ site.url }}{{ root_url }}{{ page.image }}{% else %}{{ site.url }}{{ root_url }}/images/leveille-headshot.png{% endif %}{% endcapture %}
+  {% capture title %}{% if page.title %}{{ page.title }}{% endif %}{% endcapture %}
+  {% capture desc %}{{ description | strip_html | condense_spaces | truncate:150 }}{% endcapture %}
+  <!-- Twitter Card - http://davidwalsh.name/twitter-cards -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="{{ canonical }}">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ desc }}">
+  <meta name="twitter:image" content="{{ image }}">
+
+  <!-- Facebook OG Tags -->
+  <meta property="fb:admins" content="1753588182"/>
+  <meta property="fb:app_id" content="219821018045917"/>
+  <meta property="og:title" content="{{ title }}"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:url" content="{{ canonical }}"/>
+  <meta property="og:image" content="{{ image }}"/>
+  <meta property="og:description" content="{{ desc }}"/>
+  <meta property="og:site_name" content="Jason Leveille"/>
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">

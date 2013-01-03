@@ -4,12 +4,13 @@ title: "2012 Recap, 2013 Goals"
 date: 2013-01-02 07:30
 comments: false
 categories: Goals
+image: "/images/posts/8333312959_9444dd2051_n.jpg"
 ---
 
 2012 Recap
 ----------
 
-Of all the highlights of 2012 (there are a lot, only a fraction of which will be here), my family has been the best part of my year.  My wife is a rock and helped me through some personal struggles.  My girls (6 and 3) never fail to make me laugh.  They're both at such fun ages.  We spent more time this summer upta camp which was a nice change from 2011.  I'm already looking forward to opening up camp this Spring.
+[{% img left /images/posts/8333312959_9444dd2051_n.jpg 280 280 'Photo by dhgatsby' 'Happy New Year' %}](http://www.flickr.com/photos/dhgatsby/) Of all the highlights of 2012 (there are a lot, only a fraction of which will be here), my family has been the best part of my year.  My wife is a rock and helped me through some personal struggles.  My girls (6 and 3) never fail to make me laugh.  They're both at such fun ages.  We spent more time this summer upta camp which was a nice change from 2011.  I'm already looking forward to opening up camp this Spring.
 
 <!--more-->
 

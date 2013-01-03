@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://jason.leveille.us
+url: http://jasonleveille.com
 title: Jason Leveille
 subtitle: Web developer, loving life in Southern Maine
 author: Jason Leveille
@@ -96,4 +96,4 @@ disqus_show_comment_count: true
 google_analytics_tracking_id: UA-37280745-1
 
 # Facebook Like
-facebook_like: false
+facebook_like: true
