@@ -3,7 +3,7 @@ layout: post
 title: "2012 Recap, 2013 Goals"
 date: 2013-01-02 07:30
 comments: false
-categories: 
+categories: Goals
 ---
 
 2012 Recap
