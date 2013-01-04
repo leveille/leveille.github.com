@@ -26,7 +26,7 @@
     </url>
     <url>
         <loc>http://jasonleveille.com/about/</loc>
-        <lastmod>2013-01-03T15:06:30-05:00</lastmod>
+        <lastmod>2013-01-03T20:22:37-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/blog/archives/</loc>
@@ -41,8 +41,12 @@
         <lastmod>2013-01-03T13:09:07-05:00</lastmod>
     </url>
     <url>
-        <loc>http://jasonleveille.com/new-page/</loc>
-        <lastmod>2013-01-03T13:44:34-05:00</lastmod>
+        <loc>http://jasonleveille.com/kache/</loc>
+        <lastmod>2013-01-03T21:31:23-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jasonleveille.com/projects/</loc>
+        <lastmod>2013-01-03T21:34:13-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/robots.txt</loc>

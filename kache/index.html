@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Kache - A Local Storage Utility - Jason Leveille</title>
+  <meta name="author" content="Jason Leveille">
+
+  
+  <meta name="description" content="Kache - A Local Storage Utility Inspired by kizzy (https://github.com/ded/Kizzy), Kache leverages HTML5 localStorage when available and falls back &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jasonleveille.com/kache/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Jason Leveille" type="application/atom+xml">
+    
+  
+  
+  <!-- Twitter Card - http://davidwalsh.name/twitter-cards -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://jasonleveille.com/kache/">
+  <meta name="twitter:title" content="Kache - A Local Storage Utility">
+  <meta name="twitter:description" content="Kache - A Local Storage Utility Inspired by kizzy (https://github.com/ded/Kizzy), Kache leverages HTML5 localStorage when available and falls back &hellip;">
+  <meta name="twitter:image" content="http://jasonleveille.com/images/leveille-headshot.png">
+  <meta name="twitter:site" content="@jleveille">
+  <meta name="twitter:creator" content="@jleveille">
+
+  <!-- Facebook OG Tags -->
+  <meta property="fb:admins" content="1753588182"/>
+  <meta property="fb:app_id" content="219821018045917"/>
+  <meta property="og:title" content="Kache - A Local Storage Utility"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:url" content="http://jasonleveille.com/kache/"/>
+  <meta property="og:image" content="http://jasonleveille.com/images/leveille-headshot.png"/>
+  <meta property="og:description" content="Kache - A Local Storage Utility Inspired by kizzy (https://github.com/ded/Kizzy), Kache leverages HTML5 localStorage when available and falls back &hellip;"/>
+  <meta property="og:site_name" content="Jason Leveille"/>
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37280745-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<hgroup>
+  <h1><a href="/">Jason Leveille</a></h1>
+  
+    <h2>Web developer, loving life in Southern Maine</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jasonleveille.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/projects/">Projects</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <a href="https://github.com/leveille/kache/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+
+<div id="main">
+    <article>
+        <a href="http://travis-ci.org/#!/leveille/kache"><img src="https://secure.travis-ci.org/leveille/kache.png" width="107" height="31" title="Build Status" alt="Build Status"></a>
+
+        <h1>Kache - A Local Storage Utility</h1>
+
+        <p>Inspired by kizzy (<a href="https://github.com/ded/Kizzy">https://github.com/ded/Kizzy</a>), Kache leverages HTML5 localStorage when available and falls back to an in-browser object store when it isn&#8217;t.</p>
+
+        <h2>Highlights</h2>
+
+        <ul>
+            <li> Namespaces</li>
+            <li> Namespace prefix support</li>
+            <li> Flexible timeout definitions</li>
+            <li> localStorage with an in-memory fallback</li>
+        </ul>
+
+        <h2>Usage</h2>
+
+<figure class='code'><figcaption><span>Kache in action </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">cache</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Tom Brady&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p>Calling &#8216;set&#8217; will return the cache value.</p>
+
+<figure class='code'><figcaption><span>Returning cache value with set </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Tom Brady&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <h2>Kache Configuration</h2>
+
+        <p>Kache will look for the existance of a KacheConfig global during setup.  Here you can define an enabled status as well as a default cache object timeout:</p>
+
+<figure class='code'><figcaption><span>Using KacheConfig to define default cache properties </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">KacheConfig</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">enabled</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">defaultTimeout</span><span class="o">:</span> <span class="mi">0</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p>Kache will also look for the existance of a Timeouts object.  In the event that you want to sync/stagger cache timeouts for multiple cache layers (grid/web server/etc), you can define your default namespaced cache timeouts:</p>
+
+<figure class='code'><figcaption><span>Namespaced cache timeouts </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">KacheConfig</span><span class="p">.</span><span class="nx">Timeouts</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;first_namespace&#39;</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>  <span class="c1">// 3 second default timeout for any cache object in the &#39;first_namespace&#39; namespace</span>
+</span><span class='line'>    <span class="s1">&#39;second_namespace&#39;</span><span class="o">:</span> <span class="mi">4000</span>  <span class="c1">// 4 second default timeout</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <h2>Enabling/Disabling Kache</h2>
+
+        <p>You can control whether or not Kache is enabled via the &#8216;enabled&#8217; option in KacheConfig.  You can override this setting by explicitly enabling or disabling Kache:</p>
+
+<figure class='code'><figcaption><span>Namespaced cache timeouts </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">Kache</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">Kache</span><span class="p">.</span><span class="nx">isEnabled</span><span class="p">());</span> <span class="c1">// true</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">Kache</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">Kache</span><span class="p">.</span><span class="nx">isEnabled</span><span class="p">());</span> <span class="c1">// false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p>Of note, if localStorage is supported, and the Kache store in use is localStorage, enabling kache via <code>Kache.enable()</code> will set a localStorage variable indicating the enabled/disabled status.  This variable will allow you to retain the status between page requests (which should ease testing).</p>
+
+<figure class='code'><figcaption><span>Retaining kache enabled status </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">Kache</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">_kache_enabled</span><span class="p">);</span> <span class="c1">// This variable is subject to change.</span>
+</span><span class='line'>                                    <span class="c1">// I&#39;m showing it here for illustration purposes.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p>This variable <em>WILL OVERRIDE</em> the enabled value set in KacheConfig.</p>
+
+        <h2>Explicit cache store request</h2>
+
+        <p>By default, Kache will use localStorage if available and fall back to an in memory store.</p>
+
+<figure class='code'><figcaption><span>Defaults to localStorage </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;LocalStore&#39;</span><span class="p">);</span> <span class="c1">// if localStorage is available</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;MemoryStore&#39;</span><span class="p">);</span> <span class="c1">// if localStorage is NOT available</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p>You can also explictly request a specific store:</p>
+
+<figure class='code'><figcaption><span>Requesting store type </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">.</span><span class="nx">Memory</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;MemoryStore&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">.</span><span class="nx">Local</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;LocalStore&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <h2>Namespace Prefixes</h2>
+
+        <p>Kache provides the ability to define a prefix for your namespaces.  This is useful, for example, if your site/app needs to support user/role impersonation, etc.  To clarify, if you logout and log back in as another user, you definitely don&#8217;t want to see the previous cache data.</p>
+
+        <p>The following example demonstrates the construction of a global namespace prefix.  You&#8217;d likely want this present on every page of your site (and username would be an actual username).</p>
+
+<figure class='code'><figcaption><span>Prefixing namespaces </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">KacheConfig</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">namespacePrefix</span><span class="o">:</span> <span class="s1">&#39;username&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p>You can disable namespace prefixing on a per namespace basis:</p>
+
+<figure class='code'><figcaption><span>Disabling namespace prefixes </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">KacheConfig</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">namespacePrefix</span><span class="o">:</span> <span class="s1">&#39;prefix&#39;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">cache1</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;ns1&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">cache1</span><span class="p">.</span><span class="nx">namespace</span> <span class="o">==</span> <span class="s1">&#39;prefix#ns1&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">cache2</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;ns2&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;disablePrefix&#39;</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">cache2</span><span class="p">.</span><span class="nx">namespace</span> <span class="o">==</span> <span class="s1">&#39;ns2&#39;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <h2>Timeouts</h2>
+
+        <p>There are 4 ways you can define timeouts for cache objects.</p>
+
+        <p><em>By defining a global defaultTimeout (see KacheConfig variable):</em></p>
+
+<figure class='code'><figcaption><span>Global default timeout </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">KacheConfig</span><span class="p">.</span><span class="nx">defaultTimeout</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span> <span class="c1">// Sets default object timeout of 3 seconds</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">cache</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Tom Brady&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// wait 3.5 seconds...</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">));</span> <span class="c1">// Should have timed out</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">3500</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p><em>By defining a Kache namespace timeout via the Timeouts config:</em></p>
+
+<figure class='code'><figcaption><span>Global default timeout </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">KacheConfig</span><span class="p">.</span><span class="nx">Timeouts</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;users&#39;</span><span class="o">:</span> <span class="mi">3000</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">cache</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Tom Brady&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// wait 3.5 seconds...</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">));</span> <span class="c1">// Should have timed out</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">3500</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p><em>The Kache constructor also accepts a timeout, which sets a default timeout for any cache instances created within that cache namespace:</em></p>
+
+<figure class='code'><figcaption><span>Default timeout for namespaced cache instances </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">timeout</span><span class="o">:</span> <span class="mi">5000</span><span class="p">});</span> <span class="c1">// all cache instances in this namespace will default to a 5 second expiration</span>
+</span><span class='line'><span class="nx">cache</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Tom Brady&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// wait 3 seconds...</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">));</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 6 seconds later...</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">?</span> <span class="s1">&#39;Expired&#39;</span> <span class="o">:</span> <span class="s1">&#39;Still Alive&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">6000</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <p><em>set accepts an optional 3rd parameter indicating the expiration time for a cache object:</em></p>
+
+<figure class='code'><figcaption><span>Defining timeout via set </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">cache</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Tom Brady&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// wait 3 seconds...</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">));</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 6 seconds later...</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">?</span> <span class="s1">&#39;Expired&#39;</span> <span class="o">:</span> <span class="s1">&#39;Still Alive&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">6000</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <h3>Timeout Override order</h3>
+
+        <p>Cache timeouts are listed here, in the order of precedence:</p>
+
+        <ol>
+        <li>set</li>
+        <li>Kache Constructor</li>
+        <li>KacheConfig.Timeouts</li>
+        <li>KacheConfig.defaultTimeout</li>
+        </ol><p>For example, the following cache bucket will have an expiration time of 4 seconds:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">KacheConfig</span><span class="p">.</span><span class="nx">defaultTimeout</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">KacheConfig</span><span class="p">.</span><span class="nx">Timeouts</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s1">&#39;users&#39;</span><span class="o">:</span> <span class="mi">2000</span>  <span class="c1">// Overrides defaultTimeout</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="nx">Kache</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">timeout</span><span class="o">:</span> <span class="mi">3000</span><span class="p">});</span> <span class="c1">// Overrides KacheConfig.Timeouts.users</span>
+</span><span class='line'><span class="nx">cache</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Tom Brady&#39;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">);</span> <span class="c1">// Overrides Kache constructor</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// wait 3.5 seconds...</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">));</span> <span class="c1">// Should display Tom Brady</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">3500</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// wait 4.5 seconds...</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;User&#39;</span><span class="p">));</span> <span class="c1">// Should have expired</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">4500</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+        <h2>Contributing</h2>
+
+        <p>Changes should be made to src/kache.coffee and built.  In order to build you&#8217;ll need to install CoffeeScript.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>npm install -g coffee-script
+</span></code></pre></td></tr></table></div></figure>
+
+        <p>Leave off the <code>-g</code> if you don&#8217;t wish to install globally.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> /path/to/kache
+</span><span class='line'><span class="nv">$ </span>cake build
+</span></code></pre></td></tr></table></div></figure>
+
+        <h2>Running tests</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>open public/index.html
+</span></code></pre></td></tr></table></div></figure>
+
+        <p>Or, if you have jasmine installed:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake jasmine:ci
+</span></code></pre></td></tr></table></div></figure>
+    </article>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p><img class="left" src="/images/leveille-headshot.png" width="90" height="90">Web developer for the <a href="http://nationalpriorities.org">National Priorities Project</a>.  Living with 3 beautiful ladies and living life in Soutern Maine.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/2012-recap-2013-goals/">2012 Recap, 2013 Goals</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/02/pairing-django-and-titanium-in-a-desktop-app/">Pairing Django and Titanium in a Desktop App</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2009/02/cakephp-vs-django-vs-rails-vs-who-cares-make-a-decision/">CakePHP vs Django vs Rails vs Who Cares - Make a Decision</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/05/javascript-lazy-loading/">JavaScript Lazy Loading</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2008/04/avectra-member-management-api/">Avectra Member Management API</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("jleveille", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/jleveille" class="twitter-follow-button" data-show-count="false">Follow @jleveille</a>
+  
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/jason@leve.us?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Jason Leveille -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'jasonleveille';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
