@@ -2,7 +2,7 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://jasonleveille.com/blog/2008/04/avectra-member-management-api/</loc>
-        <lastmod>2013-01-03T13:09:06-05:00</lastmod>
+        <lastmod>2013-01-04T23:44:24-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/blog/2008/05/javascript-lazy-loading/</loc>
@@ -25,28 +25,36 @@
         <lastmod>2013-01-03T13:09:06-05:00</lastmod>
     </url>
     <url>
+        <loc>http://jasonleveille.com/blog/2013/01/giving-your-images-an-extra-squeeze/</loc>
+        <lastmod>2013-01-05T00:05:26-05:00</lastmod>
+    </url>
+    <url>
         <loc>http://jasonleveille.com/about/</loc>
-        <lastmod>2013-01-04T12:39:09-05:00</lastmod>
+        <lastmod>2013-01-05T00:05:26-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/blog/archives/</loc>
-        <lastmod>2013-01-04T12:39:15-05:00</lastmod>
+        <lastmod>2013-01-05T00:05:26-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/blog/</loc>
-        <lastmod>2013-01-04T12:39:24-05:00</lastmod>
+        <lastmod>2013-01-05T00:05:26-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/</loc>
-        <lastmod>2013-01-03T13:09:07-05:00</lastmod>
+        <lastmod>2013-01-05T00:05:26-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/kache/</loc>
-        <lastmod>2013-01-03T21:31:23-05:00</lastmod>
+        <lastmod>2013-01-05T00:05:26-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://jasonleveille.com/portfolio/</loc>
+        <lastmod>2013-01-05T00:05:26-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/projects/</loc>
-        <lastmod>2013-01-04T11:06:43-05:00</lastmod>
+        <lastmod>2013-01-05T00:05:26-05:00</lastmod>
     </url>
     <url>
         <loc>http://jasonleveille.com/robots.txt</loc>
