@@ -3,7 +3,7 @@ layout: post
 title: "Giving Your Images an Extra Squeeze"
 date: 2013-01-04 16:45
 comments: false
-categories: HotTopics
+categories: HotTopics Performance
 ---
 
 Images are the main contender when it comes to page weight.
