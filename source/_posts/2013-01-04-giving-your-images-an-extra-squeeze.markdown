@@ -16,4 +16,4 @@ Yet, when we look at the actual numbers “in the wild”, we see that few devel
 
 This articles provides a range of options for optimizing any image type.  There wasn't much new here for me.  Perhaps most importantly, this serves as a reminder that we should all be thinking about image compression during any sort of build process.
 
-<a href="http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/">Original Article: Giving Your Images An Extra Squeeze</a>
+**Original Article**: [Giving Your Images An Extra Squeeze](http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/)
