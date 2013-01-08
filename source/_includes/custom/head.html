@@ -3,10 +3,6 @@
   {% capture desc %}{{ description | strip_html | condense_spaces | truncate:150 }}{% endcapture %}
   <!-- Twitter Card - http://davidwalsh.name/twitter-cards -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:url" content="{{ canonical }}">
-  <meta name="twitter:title" content="{{ title }}">
-  <meta name="twitter:description" content="{{ desc }}">
-  <meta name="twitter:image" content="{{ image }}">
   <meta name="twitter:site" content="@jleveille">
   <meta name="twitter:creator" content="@jleveille">
 
@@ -18,7 +14,7 @@
   <meta property="og:url" content="{{ canonical }}"/>
   <meta property="og:image" content="{{ image }}"/>
   <meta property="og:description" content="{{ desc }}"/>
-  <meta property="og:site_name" content="Jason Leveille"/>
+  <meta property="og:site_name" content="{{ site.author }}"/>
 
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
   <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
