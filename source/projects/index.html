@@ -6,14 +6,24 @@ title: My Projects
 <div id="main">
   <article>
     <h1>Project Archive</h1>
-    <section>
+    <section class="clearfix">
       <h2>
         {% img left /images/projects/buckets.jpg 150 150 'Photo by tomylees via flickr' 'Buckets' %}
         <a href="{{ root_url }}/kache/">Kache - A Local Storage Utility</a>
       </h2>
       <p>
-        Inspired by kizzy (<a href="https://github.com/ded/Kizzy">https://github.com/ded/Kizzy</a>), Kache leverages HTML5 localStorage when available and falls back to an in-browser object store when it isn't.
+        Kache leverages HTML5 localStorage when available and falls back to an in-browser object store when it isn't.
         <a href="{{ root_url }}/kache/">Project Page</a> | <a href="https://github.com/leveille/kache">GitHub</a>
+      </p>
+    </section>
+    <section class="clearfix">
+      <h2>
+        {% img left /images/projects/twitter-bird-white-on-blue.png 150 150 'Twitter Logo' 'Twitter Logo' %}
+        <a href="{{ root_url }}/django-twittercard/">Django TwitterCard</a>
+      </h2>
+      <p>
+        Twitter Card App for Django
+        <a href="{{ root_url }}/django-twittercard/">Project Page</a> | <a href="https://github.com/leveille/django-twittercard">GitHub</a>
       </p>
     </section>
   </article>
