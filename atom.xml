@@ -4,7 +4,7 @@
   <title><![CDATA[Jason Leveille]]></title>
   <link href="http://jasonleveille.com/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-01-14T09:11:46-05:00</updated>
+  <updated>2013-01-14T12:51:35-05:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -12,6 +12,115 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux: Extending a Logical Volume]]></title>
+    <link href="http://jasonleveille.com/blog/2013/01/linux-extending-logical-volume/"/>
+    <updated>2013-01-14T12:07:00-05:00</updated>
+    <id>http://jasonleveille.com/blog/2013/01/linux-extending-logical-volume</id>
+    <content type="html"><![CDATA[<p>One of the servers I&#8217;m working with started running out of disk space recently.  The machine is running on a Ubuntu VM in Windows, about 200 miles from my desk.  I have remote access to the VM, but I don&#8217;t have access to the virtualization software.  After requesting a disk resize through the IT company that manages our Windows network, here&#8217;s what I saw:</p>
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root@outlays:~# df -h
+</span><span class='line'>Filesystem                Size  Used Avail Use% Mounted on
+</span><span class='line'>/dev/mapper/outlays-root   14G   14G    0G 100% /
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The request I made was to increase the disk space from 14G to ~40G.  That obviously isn&#8217;t reflected here.  Running the <code>vgdisplay</code> command showed the additional space though (<strong>Free  PE / Size</strong>):</p>
+
+<figure class='code'><figcaption><span>http://linux.die.net/man/8/vgdisplay</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root@outlays:~# vgdisplay
+</span><span class='line'>  --- Volume group ---
+</span><span class='line'>  VG Name               outlays
+</span><span class='line'>  ...
+</span><span class='line'>  VG Size               39.76 GiB
+</span><span class='line'>  Free  PE / Size       6412 / 25.05 GiB
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, the disk was expanded, however I needed to assign that free space to /dev/mapper/outlays-root &#8230; I wasn&#8217;t sure how.  A bit of Googling brought me to this article: <a href="http://www.dbvisit.com/forums/showthread.php?t=343">Extending LVM disks in Linux using VMWare virtual disks</a>.  The solution seemed to be to extend the /dev/mapper/outlays-root by the amount of freespace available in the volume group.  First, I wanted to check out the /dev/mapper/outlays-root disk:</p>
+
+<figure class='code'><figcaption><span>http://linux.die.net/man/8/parted</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root@outlays:~# parted
+</span><span class='line'><span class="o">(</span>parted<span class="o">)</span> print all
+</span><span class='line'>...
+</span><span class='line'>Model: Linux device-mapper <span class="o">(</span>linear<span class="o">)</span> <span class="o">(</span>dm<span class="o">)</span>
+</span><span class='line'>Disk /dev/mapper/outlays-root: 14GB
+</span><span class='line'>Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
+</span><span class='line'>Partition Table: loop
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And running the <code>lvdisplay</code> command shows the following:</p>
+
+<figure class='code'><figcaption><span>http://linux.die.net/man/8/lvdisplay</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root@outlays:~# lvdisplay
+</span><span class='line'>  --- Logical volume ---
+</span><span class='line'>  LV Name                /dev/outlays/root
+</span><span class='line'>  VG Name                outlays
+</span><span class='line'>  ...
+</span><span class='line'>  LV Size                14 GiB
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, the assumption I made here was the /dev/mapper/outlays-root maps to /dev/outlays/mapper.  Alright, I needed to expand /dev/outlays/root.  Expanding the disk was as simple as running the following commands:</p>
+
+<figure class='code'><figcaption><span>http://linux.die.net/man/8/lvextend</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>lvextend -L+25G /dev/outlays/root
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>http://linux.die.net/man/8/resize2fs</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>resize2fs /dev/outlays/root
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, here&#8217;s the amount of disk space I have:</p>
+
+<figure class='code'><figcaption><span>http://linux.die.net/man/8/resize2fs</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root@outlays:~# df -h
+</span><span class='line'>Filesystem                Size  Used Avail Use% Mounted on
+</span><span class='line'>/dev/mapper/outlays-root   39G  8.7G   28G  24% /
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Much better.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Django TwitterCard Released]]></title>
