@@ -4,7 +4,7 @@
   <title><![CDATA[Jason Leveille]]></title>
   <link href="http://jasonleveille.com/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-01-13T20:52:40-05:00</updated>
+  <updated>2013-01-14T09:11:46-05:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -12,6 +12,98 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Django TwitterCard Released]]></title>
+    <link href="http://jasonleveille.com/blog/2013/01/django-twittercard-released/"/>
+    <updated>2013-01-14T08:42:00-05:00</updated>
+    <id>http://jasonleveille.com/blog/2013/01/django-twittercard-released</id>
+    <content type="html"><![CDATA[<p>I recently pushed a <a href="http://jasonleveille.com/django-twittercard/">Django TwitterCard</a> to GitHub.  The project simplifies the process of working with <a href="https://dev.twitter.com/docs/cards">Twitter cards</a> in Django.</p>
+
+<blockquote><p>Twitter cards make it possible for you to attach media experiences to Tweets that link to your content. Simply add a few lines of HTML to your webpages, and users who Tweet links to your content will have a &#8220;card&#8221; added to the Tweet that’s visible to all of their followers.</p><footer><strong>@twitterapi</strong> <cite><a href='https://dev.twitter.com/docs/cards'>dev.twitter.com/docs/cards/&hellip;</a></cite></footer></blockquote>
+
+
+
+
+<!--more-->
+
+
+<h2>Demonstration</h2>
+
+<p>With a small bit of configuration, Django TwitterCard can handle the creation of the necessary meta-tags related to your card.  Here&#8217;s a quick example:</p>
+
+<figure class='code'><figcaption><span>settings.py</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">TWITTERCARD_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="s">&#39;SITE&#39;</span><span class="p">:</span> <span class="s">&#39;@jleveille&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;CREATOR&#39;</span><span class="p">:</span> <span class="s">&#39;@jleveille&#39;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<div><script src='https://gist.github.com/4530272.js'></script>
+<noscript><pre><code>{% load twittercard %}
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Django TwitterCard Example&lt;/title&gt;
+        {% twittercard_summary title=&quot;Django TwitterCard Example&quot; description=&quot;Django TwitterCard simplifies the process of working with Twitter cards in ... Django&quot; %}
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre></noscript></div>
+
+
+<p>The resulting meta-tags follow:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:card&quot;</span> <span class="na">content=</span><span class="s">&quot;summary&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:site&quot;</span> <span class="na">content=</span><span class="s">&quot;@jleveille&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">content=</span><span class="s">&quot;@jleveille&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:url&quot;</span> <span class="na">content=</span><span class="s">&quot;http://url.tld/sub/&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:title&quot;</span> <span class="na">content=</span><span class="s">&quot;Django TwitterCard Example&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:description&quot;</span> <span class="na">content=</span><span class="s">&quot;Django TwitterCard simplifies the process of working with Twitter cards in ... Django&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Download / Documentation</h2>
+
+<ul>
+<li><a href="https://github.com/leveille/django-twittercard">https://github.com/leveille/django-twittercard</a></li>
+<li><a href="http://jasonleveille.com/django-twittercard/">http://jasonleveille.com/django-twittercard/</a></li>
+<li><a href="http://davidwalsh.name/twitter-cards">http://davidwalsh.name/twitter-cards</a></li>
+</ul>
+
+
+<h2>Twitter Cards and the Open Graph</h2>
+
+<p>It&#8217;s important to note the relationship between Twitter cards and the Open Graph:</p>
+
+<blockquote><p>If you&#8217;re already using OpenGraph to describe data on your page, it’s easy to generate a Twitter card without duplicating your tags and data. When the Twitter card processor looks for tags on your page, it first checks for the Twitter property, and if not present, falls back to the supported Open Graph property</p><footer><strong>@twitterapi</strong> <cite><a href='https://dev.twitter.com/docs/cards#open-graph'>dev.twitter.com/docs/&hellip;</a></cite></footer></blockquote>
+
+
+<p>If you&#8217;re already using the following tags in the Open Graph, they won&#8217;t be necessary in your Twitter card tags:</p>
+
+<ol>
+<li><code>og:url</code></li>
+<li><code>og:description</code></li>
+<li><code>og:title</code></li>
+<li><code>og:image</code></li>
+<li><code>og:image:width</code></li>
+<li><code>og:image:height</code></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Giving Your Images an Extra Squeeze]]></title>
