@@ -4,7 +4,7 @@
   <title><![CDATA[Jason Leveille]]></title>
   <link href="http://jasonleveille.com/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-01-14T12:57:19-05:00</updated>
+  <updated>2013-01-14T17:33:51-05:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -36,7 +36,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The request I made was to increase the disk space from 14G to ~40G.  That obviously isn&#8217;t reflected here.  Running the <code>vgdisplay</code> command showed the additional space though (<strong>Free  PE / Size</strong>):</p>
+<p>The request I made was to increase the disk space from 14G to ~40G.  That additional space doesn&#8217;t show up, as it&#8217;s free space on the disk (it hasn&#8217;t yet been assigned to a volume).  Running the <code>vgdisplay</code> will show the additional space (<strong>Free  PE / Size</strong>):</p>
 
 <figure class='code'><figcaption><span>http://linux.die.net/man/8/vgdisplay</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -91,7 +91,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>So, the assumption I made here was the /dev/mapper/outlays-root maps to /dev/outlays/mapper.  Alright, I needed to expand /dev/outlays/root.  Expanding the disk was as simple as running the following commands:</p>
+<p>So, the assumption I made here was the /dev/mapper/outlays-root maps to /dev/outlays/root.  Alright, I needed to expand /dev/outlays/root.  Expanding the disk was as simple as running the following commands:</p>
 
 <figure class='code'><figcaption><span>http://linux.die.net/man/8/lvextend</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>lvextend -L+25G /dev/outlays/root
