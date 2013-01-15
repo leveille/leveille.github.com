@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-01-14T17:40:44-05:00</updated>
+  <updated>2013-01-15T09:59:55-05:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Debian & Ubuntu: Adding a StartUp Script]]></title>
+    <link href="http://jasonleveille.com/blog/2013/01/debian-ubuntu-adding-a-startup-script/"/>
+    <updated>2013-01-15T07:39:00-05:00</updated>
+    <id>http://jasonleveille.com/blog/2013/01/debian-ubuntu-adding-a-startup-script</id>
+    <content type="html"><![CDATA[<p>I recently had the need to run some code with each server restart.  <a href="http://manpages.ubuntu.com/manpages/precise/en/man8/update-rc.d.8.html">update-rc.d</a> provides a great and easy way execute your own code on server startup (in my case, Ubuntu 12.04).</p>
+
+<!--more-->
+
+
+<p>As root, create your script:</p>
+
+<p>```bash spaghetti.sh</p>
+
+<h1>!/bin/sh</h1>
+
+<p>mkdir /tmp/spaghetti &amp;&amp; touch /tmp/spaghetti/meatballs.txt<br/>
+```</p>
+
+<p>Make the script executable:</p>
+
+<p><code>bash
+root@cameron ~ % chmod +x spaghetti.sh
+</code></p>
+
+<p>Add your script to <code>/etc/init.d</code>:</p>
+
+<p><code>bash
+root@cameron ~ % mv spaghetti.sh /etc/init.d
+</code></p>
+
+<p>Run <code>update-rc.d</code> on the new script:</p>
+
+<p><code>bash
+root@cameron ~ % update-rc.d spaghetti.sh defaults
+</code></p>
+
+<p>Enjoy.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux: Extending a Logical Volume]]></title>
