@@ -4,7 +4,7 @@
   <title><![CDATA[Jason Leveille]]></title>
   <link href="http://jasonleveille.com/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-01-15T09:59:55-05:00</updated>
+  <updated>2013-01-15T11:01:58-05:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -53,7 +53,15 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Enjoy.</p>
+<p>So, what is the <code>defaults</code> argument?</p>
+
+<blockquote><p>If  defaults  is  used  then  update-rc.d  will make links to start the service in runlevels 2345 and to stop the service in runlevels 016.</p><footer><strong>Ubuntu Manuals, Installing Init Script Links,</strong> <cite><a href='http://manpages.ubuntu.com/manpages/precise/en/man8/update-rc.d.8.html'>manpages.ubuntu.com/manpages/en/&hellip;</a></cite></footer></blockquote>
+
+
+<p>Here&#8217;s a great article describing runlevels in exhausting detail:</p>
+
+<blockquote><p>And what is a runlevel? You might assume that this refers to different levels that the system goes through during a boot up. Instead, think of the runlevel as the point at which the system is entered. Runlevel 1 is the most basic configuration (simple single user access using an text interface), while runlevel 5 is the most advanced (multi-user, networking, and a GUI front end). Runlevels 0 and 6 are used for halting and rebooting the system.</p><footer><strong>linux.com, An introduction to services, runlevels, and rc.d scripts,</strong> <cite><a href='https://www.linux.com/news/enterprise/systems-management/8116'>www.linux.com/news/enterprise/&hellip;</a></cite></footer></blockquote>
+
 ]]></content>
   </entry>
   
