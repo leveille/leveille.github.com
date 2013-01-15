@@ -3,7 +3,7 @@ layout: post
 title: "Linux: Extending a Logical Volume"
 date: 2013-01-14 12:07
 comments: false
-categories: linux vmware
+categories: Notes Linux VMWare
 ---
 
 One of the servers I'm working with started running out of disk space recently.  The machine is running on a Ubuntu VM in Windows, about 200 miles from my desk.  I have remote access to the VM, but I don't have access to the virtualization software.  After requesting a disk resize through the IT company that manages our Windows network, here's what I saw:
@@ -17,7 +17,7 @@ Filesystem                Size  Used Avail Use% Mounted on
 ...
 ```
 
-The request I made was to increase the disk space from 14G to ~40G.  That obviously isn't reflected here.  Running the `vgdisplay` command showed the additional space though (**Free  PE / Size**):
+The request I made was to increase the disk space from 14G to ~40G.  That additional space doesn't show up, as it's free space on the disk (it hasn't yet been assigned to a volume).  Running the `vgdisplay` will show the additional space (**Free  PE / Size**):
 
 ```bash http://linux.die.net/man/8/vgdisplay
 root@outlays:~# vgdisplay
@@ -52,7 +52,7 @@ root@outlays:~# lvdisplay
   LV Size                14 GiB
 ```
 
-So, the assumption I made here was the /dev/mapper/outlays-root maps to /dev/outlays/mapper.  Alright, I needed to expand /dev/outlays/root.  Expanding the disk was as simple as running the following commands:
+So, the assumption I made here was the /dev/mapper/outlays-root maps to /dev/outlays/root.  Alright, I needed to expand /dev/outlays/root.  Expanding the disk was as simple as running the following commands:
 
 ```bash http://linux.die.net/man/8/lvextend
 lvextend -L+25G /dev/outlays/root

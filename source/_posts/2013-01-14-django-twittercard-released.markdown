@@ -4,7 +4,7 @@ title: "Django TwitterCard Released"
 description: "Django TwitterCard simplifies the process of working with Twitter cards in ... Django"
 date: 2013-01-14 08:42
 comments: true
-categories: django opensource
+categories: Django OpenSource
 ---
 
 I recently pushed a [Django TwitterCard](http://jasonleveille.com/django-twittercard/) to GitHub.  The project simplifies the process of working with [Twitter cards](https://dev.twitter.com/docs/cards) in Django.
