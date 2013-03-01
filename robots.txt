@@ -1,4 +1,6 @@
 User-agent: *
-Disallow: 
+Allow: /
+Disallow: /blog/2013/01/giving-your-images-an-extra-squeeze/
+Disallow: /blog/2013/03/01/the-10-commandments-of-logging/
 
 Sitemap: http://jasonleveille.com/sitemap.xml 

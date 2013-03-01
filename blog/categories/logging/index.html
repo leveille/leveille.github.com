@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Debian & Ubuntu: Adding a StartUp Script - Jason Leveille</title>
+  <title>Category: Logging - Jason Leveille</title>
   <meta name="author" content="Jason Leveille">
 
   
-  <meta name="description" content="I recently had the need to run some code with each server restart. update-rc.d provides a great and easy way execute your own code on server startup &hellip;">
+  <meta name="description" content="Category: Logging">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://jasonleveille.com/blog/2013/01/debian-ubuntu-adding-a-startup-script/">
+  <link rel="canonical" href="http://jasonleveille.com/blog/categories/logging/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -36,11 +36,11 @@
   <!-- Facebook OG Tags -->
   <meta property="fb:admins" content="1753588182"/>
   <meta property="fb:app_id" content="219821018045917"/>
-  <meta property="og:title" content="Debian & Ubuntu: Adding a StartUp Script"/>
+  <meta property="og:title" content="Category: Logging"/>
   <meta property="og:type" content="blog"/>
-  <meta property="og:url" content="http://jasonleveille.com/blog/2013/01/debian-ubuntu-adding-a-startup-script/"/>
+  <meta property="og:url" content="http://jasonleveille.com/blog/categories/logging/"/>
   <meta property="og:image" content="http://jasonleveille.com/images/leveille-headshot.png"/>
-  <meta property="og:description" content="I recently had the need to run some code with each server restart. update-rc.d provides a great and easy way execute your own code on server startup &hellip;"/>
+  <meta property="og:description" content="Category: Logging"/>
   <meta property="og:site_name" content="Jason Leveille"/>
 
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
@@ -106,133 +106,35 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Debian & Ubuntu: Adding a StartUp Script</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-15T07:39:00-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2013</time>
-        
-      </p>
+    <h1 class="entry-title">Category: Logging</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>I recently had the need to run some code with each server restart.  <a href="http://manpages.ubuntu.com/manpages/precise/en/man8/update-rc.d.8.html">update-rc.d</a> provides a great and easy way execute your own code on server startup (in my case, Ubuntu 12.04).</p>
 
-<!--more-->
+  
+  <h2>2013</h2>
 
+<article>
+  
+<h1><a href="/blog/2013/03/the-10-commandments-of-logging/">The 10 Commandments of Logging</a></h1>
+<time datetime="2013-03-01T08:56:00-05:00" pubdate><span class='month'>Mar</span> <span class='day'>01</span> <span class='year'>2013</span></time>
 
-<p>As root, create your script:</p>
-
-<figure class='code'><figcaption><span>spaghetti.sh</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/sh</span>
-</span><span class='line'>mkdir /tmp/spaghetti <span class="o">&amp;&amp;</span> touch /tmp/spaghetti/meatballs.txt
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Make the script executable:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>root@cameron ~ % chmod +x spaghetti.sh
-</span></code></pre></td></tr></table></div></figure>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/logging/'>Logging</a>, <a class='category' href='/blog/categories/notes/'>Notes</a></span>
+</footer>
 
 
-<p>Add your script to <code>/etc/init.d</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>root@cameron ~ % mv spaghetti.sh /etc/init.d
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Run <code>update-rc.d</code> on the new script:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>root@cameron ~ % update-rc.d spaghetti.sh defaults
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So, what is the <code>defaults</code> argument?</p>
-
-<blockquote><p>If  defaults  is  used  then  update-rc.d  will make links to start the service in runlevels 2345 and to stop the service in runlevels 016.</p><footer><strong>Ubuntu Manuals, Installing Init Script Links,</strong> <cite><a href='http://manpages.ubuntu.com/manpages/precise/en/man8/update-rc.d.8.html'>manpages.ubuntu.com/manpages/en/&hellip;</a></cite></footer></blockquote>
-
-
-<p>Here&#8217;s a great article describing runlevels in exhausting detail:</p>
-
-<blockquote><p>And what is a runlevel? You might assume that this refers to different levels that the system goes through during a boot up. Instead, think of the runlevel as the point at which the system is entered. Runlevel 1 is the most basic configuration (simple single user access using an text interface), while runlevel 5 is the most advanced (multi-user, networking, and a GUI front end). Runlevels 0 and 6 are used for halting and rebooting the system.</p><footer><strong>linux.com, An introduction to services, runlevels, and rc.d scripts,</strong> <cite><a href='https://www.linux.com/news/enterprise/systems-management/8116'>www.linux.com/news/enterprise/&hellip;</a></cite></footer></blockquote>
+</article>
 
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Jason Leveille</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-15T07:39:00-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2013</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/notes/'>Notes</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jasonleveille.com/blog/2013/01/debian-ubuntu-adding-a-startup-script/" data-via="jleveille" data-counturl="http://jasonleveille.com/blog/2013/01/debian-ubuntu-adding-a-startup-script/" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/01/linux-extending-logical-volume/" title="Previous Post: Linux: Extending a Logical Volume">&laquo; Linux: Extending a Logical Volume</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/03/the-10-commandments-of-logging/" title="Next Post: The 10 Commandments of Logging">The 10 Commandments of Logging &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>
@@ -313,6 +215,19 @@
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'jasonleveille';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
