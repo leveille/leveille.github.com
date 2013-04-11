@@ -2,8 +2,6 @@
 layout: nil
 ---
 User-agent: *
-Allow: /
-Disallow: /blog/2013/01/giving-your-images-an-extra-squeeze/
-Disallow: /blog/2013/03/01/the-10-commandments-of-logging/
+Disallow: 
 
 Sitemap: {{ site.url }}/sitemap.xml 
