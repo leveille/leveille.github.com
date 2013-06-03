@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Performance | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/performance/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-04-11T11:57:23-04:00</updated>
+  <updated>2013-06-03T16:29:02-04:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -20,9 +20,9 @@
     <id>http://jasonleveille.com/blog/2013/01/giving-your-images-an-extra-squeeze</id>
     <content type="html"><![CDATA[<p>Images are the main contender when it comes to page weight.</p>
 
-<p><blockquote><p>According to the latest HTTP archive stats, the average Web page weighs 1286KB, and 60% of that is image data.<br/>...<br/>Yet, when we look at the actual numbers “in the wild”, we see that few developers actually compress their images, and even for those that do, the results are not always ideal.</p><footer><strong>Yoav Weiss @yoavweiss</strong> <cite><a href='http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/'>Perf Planet: Giving Your Images an Extra Squeeze</a></cite></footer></blockquote></p>
+<p><blockquote><p>According to the latest HTTP archive stats, the average Web page weighs 1286KB, and 60% of that is image data.<br/>&hellip;<br/>Yet, when we look at the actual numbers “in the wild”, we see that few developers actually compress their images, and even for those that do, the results are not always ideal.</p><footer><strong>Yoav Weiss @yoavweiss <a href="http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/">http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/</a> Perf Planet: Giving Your Images An Extra Squeeze</strong></footer></blockquote></p>
 
-<p>This articles provides a range of options for optimizing any image type.  There wasn't much new here for me.  Perhaps most importantly, this serves as a reminder that we should all be thinking about image compression during any sort of build process.</p>
+<p>This articles provides a range of options for optimizing any image type.  There wasn&rsquo;t much new here for me.  Perhaps most importantly, this serves as a reminder that we should all be thinking about image compression during any sort of build process.</p>
 
 <p><strong>Original Article</strong>: <a href="http://calendar.perfplanet.com/2012/giving-your-images-an-extra-squeeze/">Giving Your Images An Extra Squeeze</a></p>
 ]]></content>

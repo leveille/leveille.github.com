@@ -48,6 +48,8 @@
   <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+
+
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -152,7 +154,7 @@
 <blockquote><p>uses a special marker value (usually null) to indicate a field isn’t loaded. Every access to the field checks the field for the marker value and if unloaded, loads it.</p><footer><strong>Martin Fowler</strong> <cite><a href='http://www.martinfowler.com/eaaCatalog/lazyLoad.html'>Lazy Load</a></cite></footer></blockquote>
 
 
-<p>In my first example (original blog post - no longer accessible), I had the need to display <a href="http://www.timeanddate.com/library/abbreviations/timezones/na/est.html">EST</a>/<a href="http://www.timeanddate.com/library/abbreviations/timezones/na/edt.html">EDT</a> time via JavaScript, regardless of the location of the client. The solution of course is to pull in a timestamp from the server (whose time is in EST/EDT), and feed that to the JavaScript Date constructor. From there, all that is needed is a <a href="http://developer.mozilla.org/en/docs/DOM:window.setInterval">setInterval</a>, called every 1 second, and an increment of the timestamp variable by 1 second.</p>
+<p>In my first example (original blog post &ndash; no longer accessible), I had the need to display <a href="http://www.timeanddate.com/library/abbreviations/timezones/na/est.html">EST</a>/<a href="http://www.timeanddate.com/library/abbreviations/timezones/na/edt.html">EDT</a> time via JavaScript, regardless of the location of the client. The solution of course is to pull in a timestamp from the server (whose time is in EST/EDT), and feed that to the JavaScript Date constructor. From there, all that is needed is a <a href="http://developer.mozilla.org/en/docs/DOM:window.setInterval">setInterval</a>, called every 1 second, and an increment of the timestamp variable by 1 second.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -412,6 +414,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/civic-hacking-with-hfcwesternma-hackforchange/">Civic Hacking With #HFCWesternMA, #hackforchange</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/the-10-commandments-of-logging/">The 10 Commandments of Logging</a>
       </li>
     
@@ -425,10 +431,6 @@
     
       <li class="post">
         <a href="/blog/2013/01/django-twittercard-released/">Django TwitterCard Released</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/giving-your-images-an-extra-squeeze/">Giving Your Images an Extra Squeeze</a>
       </li>
     
   </ul>

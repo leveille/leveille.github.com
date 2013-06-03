@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-04-11T11:57:23-04:00</updated>
+  <updated>2013-06-03T16:29:02-04:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -52,11 +52,11 @@ root@cameron ~ % update-rc.d spaghetti.sh defaults
 
 <p>So, what is the <code>defaults</code> argument?</p>
 
-<p><blockquote><p>If  defaults  is  used  then  update-rc.d  will make links to start the service in runlevels 2345 and to stop the service in runlevels 016.</p><footer><strong>Ubuntu Manuals, Installing Init Script Links,</strong> <cite><a href='http://manpages.ubuntu.com/manpages/precise/en/man8/update-rc.d.8.html'>manpages.ubuntu.com/manpages/en/&hellip;</a></cite></footer></blockquote></p>
+<p><blockquote><p>If  defaults  is  used  then  update-rc.d  will make links to start the service in runlevels 2345 and to stop the service in runlevels 016.</p><footer><strong>Ubuntu Manuals</strong> <cite>Installing Init Script Links</cite></footer></blockquote></p>
 
-<p>Here's a great article describing runlevels in exhausting detail:</p>
+<p>Here&rsquo;s a great article describing runlevels in exhausting detail:</p>
 
-<p><blockquote><p>And what is a runlevel? You might assume that this refers to different levels that the system goes through during a boot up. Instead, think of the runlevel as the point at which the system is entered. Runlevel 1 is the most basic configuration (simple single user access using an text interface), while runlevel 5 is the most advanced (multi-user, networking, and a GUI front end). Runlevels 0 and 6 are used for halting and rebooting the system.</p><footer><strong>linux.com, An introduction to services, runlevels, and rc.d scripts,</strong> <cite><a href='https://www.linux.com/news/enterprise/systems-management/8116'>www.linux.com/news/enterprise/&hellip;</a></cite></footer></blockquote></p>
+<p><blockquote><p>And what is a runlevel? You might assume that this refers to different levels that the system goes through during a boot up. Instead, think of the runlevel as the point at which the system is entered. Runlevel 1 is the most basic configuration (simple single user access using an text interface), while runlevel 5 is the most advanced (multi-user, networking, and a GUI front end). Runlevels 0 and 6 are used for halting and rebooting the system.</p><footer><strong>linux.com</strong> <cite>An Introduction to Services</cite></footer></blockquote></p>
 ]]></content>
   </entry>
   
@@ -65,7 +65,7 @@ root@cameron ~ % update-rc.d spaghetti.sh defaults
     <link href="http://jasonleveille.com/blog/2013/01/linux-extending-logical-volume/"/>
     <updated>2013-01-14T12:07:00-05:00</updated>
     <id>http://jasonleveille.com/blog/2013/01/linux-extending-logical-volume</id>
-    <content type="html"><![CDATA[<p>One of the servers I'm working with started running out of disk space recently.  The machine is running on a Ubuntu VM in Windows, about 200 miles from my desk.  I have remote access to the VM, but I don't have access to the virtualization software.  After requesting a disk resize through the IT company that manages our Windows network, here's what I saw:</p>
+    <content type="html"><![CDATA[<p>One of the servers I&rsquo;m working with started running out of disk space recently.  The machine is running on a Ubuntu VM in Windows, about 200 miles from my desk.  I have remote access to the VM, but I don&rsquo;t have access to the virtualization software.  After requesting a disk resize through the IT company that manages our Windows network, here&rsquo;s what I saw:</p>
 
 <!--more-->
 
@@ -77,7 +77,7 @@ Filesystem                Size  Used Avail Use% Mounted on
 ...
 </code></p>
 
-<p>The request I made was to increase the disk space from 14G to ~40G.  That additional space doesn't show up, as it's free space on the disk (it hasn't yet been assigned to a volume).  Running the <code>vgdisplay</code> will show the additional space (<strong>Free  PE / Size</strong>):</p>
+<p>The request I made was to increase the disk space from 14G to ~40G.  That additional space doesn&rsquo;t show up, as it&rsquo;s free space on the disk (it hasn&rsquo;t yet been assigned to a volume).  Running the <code>vgdisplay</code> will show the additional space (<strong>Free  PE / Size</strong>):</p>
 
 <p><code>bash http://linux.die.net/man/8/vgdisplay
 root@outlays:~# vgdisplay
@@ -88,7 +88,7 @@ root@outlays:~# vgdisplay
   Free  PE / Size       6412 / 25.05 GiB
 </code></p>
 
-<p>So, the disk was expanded, however I needed to assign that free space to /dev/mapper/outlays-root ... I wasn't sure how.  A bit of Googling brought me to this article: <a href="http://www.dbvisit.com/forums/showthread.php?t=343">Extending LVM disks in Linux using VMWare virtual disks</a>.  The solution seemed to be to extend the /dev/mapper/outlays-root by the amount of freespace available in the volume group.  First, I wanted to check out the /dev/mapper/outlays-root disk:</p>
+<p>So, the disk was expanded, however I needed to assign that free space to /dev/mapper/outlays-root &hellip; I wasn&rsquo;t sure how.  A bit of Googling brought me to this article: <a href="http://www.dbvisit.com/forums/showthread.php?t=343">Extending LVM disks in Linux using VMWare virtual disks</a>.  The solution seemed to be to extend the /dev/mapper/outlays-root by the amount of freespace available in the volume group.  First, I wanted to check out the /dev/mapper/outlays-root disk:</p>
 
 <p><code>bash http://linux.die.net/man/8/parted
 root@outlays:~# parted
@@ -122,7 +122,7 @@ lvextend -L+25G /dev/outlays/root
 resize2fs /dev/outlays/root
 </code></p>
 
-<p>Now, here's the amount of disk space I have:</p>
+<p>Now, here&rsquo;s the amount of disk space I have:</p>
 
 <p><code>
 root@outlays:~# df -h

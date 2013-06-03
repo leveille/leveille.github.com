@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Logging | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/logging/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-04-11T11:57:23-04:00</updated>
+  <updated>2013-06-03T16:29:02-04:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -20,7 +20,7 @@
     <id>http://jasonleveille.com/blog/2013/03/the-10-commandments-of-logging</id>
     <content type="html"><![CDATA[<p>Some great and practical tips for logging.</p>
 
-<p><blockquote><p>When a developer writes a log message, it is in the context of the code in which the log directive is to be inserted. In those conditions we tend to write messages the infer on the current context. Unfortunately when reading the log itself this context is absent, and those messages might not be understandable.</p><footer><strong>Brice Figureau @<em>masterzen</em></strong> <cite><a href='http://www.masterzen.fr/2013/01/13/the-10-commandments-of-logging/'>The 10 Commandments of Logging</a></cite></footer></blockquote></p>
+<p><blockquote><p>When a developer writes a log message, it is in the context of the code in which the log directive is to be inserted. In those conditions we tend to write messages the infer on the current context. Unfortunately when reading the log itself this context is absent, and those messages might not be understandable.</p><footer><strong>Brice Figureau @<em>masterzen</em> <a href="http://www.masterzen.fr/2013/01/13/the-10-commandments-of-logging/">http://www.masterzen.fr/2013/01/13/the-10-commandments-of-logging/</a> The 10 Commandments of Logging</strong></footer></blockquote></p>
 
 <p><strong>Original Article</strong>: <a href="http://www.masterzen.fr/2013/01/13/the-10-commandments-of-logging/">The 10 Commandments of Logging</a></p>
 ]]></content>

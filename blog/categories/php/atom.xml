@@ -4,7 +4,7 @@
   <title><![CDATA[Category: PHP | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/php/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-04-11T11:57:23-04:00</updated>
+  <updated>2013-06-03T16:29:02-04:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -25,7 +25,7 @@
 
 <p>I had to authenticate against an external data source, as well as query the data source for member information when needed. Avectra does have a web service API which it has named xWeb. Here is a quote from <a href="http://wiki.avectra.com/index.php?title=NetFORUM">their Wiki</a>:</p>
 
-<p><blockquote><p>xWeb is netFORUM’s XML web services application. netFORUM is an enterprise level Association Management System (AMS) developed by Avectra that allows associations to manage their customers and related activities. netFORUM is used by association staff, members, and the public at large.</p><footer><strong>Avectra</strong> <cite><a href='http://wiki.avectra.com/index.php?title=NetFORUM'>Avectra Wiki</a></cite></footer></blockquote></p>
+<p><blockquote><p>xWeb is netFORUM’s XML web services application. netFORUM is an enterprise level Association Management System (AMS) developed by Avectra that allows associations to manage their customers and related activities. netFORUM is used by association staff, members, and the public at large.</p><footer><strong>Avectra <a href="http://wiki.avectra.com/index.php?title=NetFORUM">http://wiki.avectra.com/index.php?title=NetFORUM</a> Avectra Wiki</strong></footer></blockquote></p>
 
 <h2>Interacting with the API</h2>
 

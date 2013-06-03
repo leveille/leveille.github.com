@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Django | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/django/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-04-11T11:57:23-04:00</updated>
+  <updated>2013-06-03T16:29:02-04:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -20,14 +20,14 @@
     <id>http://jasonleveille.com/blog/2013/01/django-twittercard-released</id>
     <content type="html"><![CDATA[<p>I recently pushed a <a href="http://jasonleveille.com/django-twittercard/">Django TwitterCard</a> to GitHub.  The project simplifies the process of working with <a href="https://dev.twitter.com/docs/cards">Twitter cards</a> in Django.</p>
 
-<p><blockquote><p>Twitter cards make it possible for you to attach media experiences to Tweets that link to your content. Simply add a few lines of HTML to your webpages, and users who Tweet links to your content will have a "card" added to the Tweet that’s visible to all of their followers.</p><footer><strong>@twitterapi</strong> <cite><a href='https://dev.twitter.com/docs/cards'>dev.twitter.com/docs/cards/&hellip;</a></cite></footer></blockquote></p>
+<p><blockquote><p>Twitter cards make it possible for you to attach media experiences to Tweets that link to your content. Simply add a few lines of HTML to your webpages, and users who Tweet links to your content will have a &ldquo;card&rdquo; added to the Tweet that’s visible to all of their followers.</p><footer><strong>@twitterapi <a href="https://dev.twitter.com/docs/cards">https://dev.twitter.com/docs/cards</a></strong></footer></blockquote></p>
 
 <!--more-->
 
 
 <h2>Demonstration</h2>
 
-<p>With a small bit of configuration, Django TwitterCard can handle the creation of the necessary meta-tags related to your card.  Here's a quick example:</p>
+<p>With a small bit of configuration, Django TwitterCard can handle the creation of the necessary meta-tags related to your card.  Here&rsquo;s a quick example:</p>
 
 <p>```python settings.py
 TWITTERCARD_CONFIG = {</p>
@@ -74,11 +74,11 @@ TWITTERCARD_CONFIG = {</p>
 
 <h2>Twitter Cards and the Open Graph</h2>
 
-<p>It's important to note the relationship between Twitter cards and the Open Graph:</p>
+<p>It&rsquo;s important to note the relationship between Twitter cards and the Open Graph:</p>
 
-<p><blockquote><p>If you're already using OpenGraph to describe data on your page, it’s easy to generate a Twitter card without duplicating your tags and data. When the Twitter card processor looks for tags on your page, it first checks for the Twitter property, and if not present, falls back to the supported Open Graph property</p><footer><strong>@twitterapi</strong> <cite><a href='https://dev.twitter.com/docs/cards#open-graph'>dev.twitter.com/docs/&hellip;</a></cite></footer></blockquote></p>
+<p><blockquote><p>If you&rsquo;re already using OpenGraph to describe data on your page, it’s easy to generate a Twitter card without duplicating your tags and data. When the Twitter card processor looks for tags on your page, it first checks for the Twitter property, and if not present, falls back to the supported Open Graph property</p><footer><strong>@twitterapi <a href="https://dev.twitter.com/docs/cards#open-graph">https://dev.twitter.com/docs/cards#open-graph</a></strong></footer></blockquote></p>
 
-<p>If you're already using the following tags in the Open Graph, they won't be necessary in your Twitter card tags:</p>
+<p>If you&rsquo;re already using the following tags in the Open Graph, they won&rsquo;t be necessary in your Twitter card tags:</p>
 
 <ol>
 <li><code>og:url</code></li>
@@ -130,7 +130,7 @@ TWITTERCARD_CONFIG = {</p>
 
 <h2>Directory Layout</h2>
 
-<p><img src="https://www.evernote.com/shard/s33/sh/06d56a74-d35e-419e-840f-13cc9ab3dc22/9e3f959c495e5f348d463c6882dd7f75/res/8d23c11d-590c-404f-a1e7-d5b3dd480110.jpg?resizeSmall&amp;width=832"></p>
+<p><img class="<a" src="href="https://www.evernote.com/shard/s33/sh/06d56a74-d35e-419e-840f-13cc9ab3dc22/9e3f959c495e5f348d463c6882dd7f75/res/8d23c11d-590c-404f-a1e7-d5b3dd480110.jpg?resizeSmall&amp;width=832">https://www.evernote.com/shard/s33/sh/06d56a74-d35e-419e-840f-13cc9ab3dc22/9e3f959c495e5f348d463c6882dd7f75/res/8d23c11d-590c-404f-a1e7-d5b3dd480110.jpg?resizeSmall&amp;width=832</a>"></p>
 
 <h2>Creating the Project</h2>
 
@@ -227,7 +227,7 @@ return t.render(c)
 
 <h2>Database Communication</h2>
 
-<p>Database communication also went fairly smooth (though I did get tripped up trying to find a method to use an existing SQLite db for Titanium ... ultimately the following worked for me:</p>
+<p>Database communication also went fairly smooth (though I did get tripped up trying to find a method to use an existing SQLite db for Titanium &hellip; ultimately the following worked for me:</p>
 
 <p><code>
 Titanium.Database.openFile('/path/to/db'))
@@ -354,7 +354,7 @@ from test_project.contrib.db import py_get_db
 
 <h2>The Result</h2>
 
-<p><img src="https://www.evernote.com/shard/s33/sh/06d56a74-d35e-419e-840f-13cc9ab3dc22/9e3f959c495e5f348d463c6882dd7f75/res/bba35d6b-fa73-45f5-873b-e278c340cda5.jpg?resizeSmall&amp;width=832"></p>
+<p><img class="<a" src="href="https://www.evernote.com/shard/s33/sh/06d56a74-d35e-419e-840f-13cc9ab3dc22/9e3f959c495e5f348d463c6882dd7f75/res/bba35d6b-fa73-45f5-873b-e278c340cda5.jpg?resizeSmall&amp;width=832">https://www.evernote.com/shard/s33/sh/06d56a74-d35e-419e-840f-13cc9ab3dc22/9e3f959c495e5f348d463c6882dd7f75/res/bba35d6b-fa73-45f5-873b-e278c340cda5.jpg?resizeSmall&amp;width=832</a>"></p>
 
 <p>If you have experience playing around with these two playfellows, feel free to share them here.</p>
 ]]></content>
@@ -378,9 +378,9 @@ from test_project.contrib.db import py_get_db
 <!--more-->
 
 
-<h2>Who Cares - Make a Decision</h2>
+<h2>Who Cares &ndash; Make a Decision</h2>
 
-<p>Getting stuck in <a href="http://www.google.com/search?hl=en&amp;q=which+framework+should+I+choose&amp;btnG=Google+Search&amp;aq=f&amp;oq=which+framework+should+I+choos">choice limbo</a> is bad for many reasons.  Perhaps the biggest one of all has to do with inaction.  If you are unsure which framework to choose from, chances are pretty good you’re not writing code or being as productive as you could be.  If you’re not writing code than you’re not starting the process of getting over one or more learning curves (every framework will carry a learning curve ... if you choose a framework outside of a language you are familiar with, than you’ll have many learning curves to get over).</p>
+<p>Getting stuck in <a href="http://www.google.com/search?hl=en&amp;q=which+framework+should+I+choose&amp;btnG=Google+Search&amp;aq=f&amp;oq=which+framework+should+I+choos">choice limbo</a> is bad for many reasons.  Perhaps the biggest one of all has to do with inaction.  If you are unsure which framework to choose from, chances are pretty good you’re not writing code or being as productive as you could be.  If you’re not writing code than you’re not starting the process of getting over one or more learning curves (every framework will carry a learning curve &hellip; if you choose a framework outside of a language you are familiar with, than you’ll have many learning curves to get over).</p>
 
 <h2>Go Easy on Yourself</h2>
 
@@ -397,7 +397,7 @@ from test_project.contrib.db import py_get_db
 <ol>
 <li>unless you are writing an application that can’t afford the performance penalty that is likely to come along with any framework (perhaps &lt; .005% of applications on the Internet are in this category, and congratulations if you are working on one), <strong>or</strong></li>
 <li>you are working on an application that doesn’t need a framework to begin with, <strong>or</strong></li>
-<li>you shouldn’t be writing a custom application (when perhaps the best thing you can do for your client is choose a proven CMS ... one that eases content management/maintenance/etc) <strong>than</strong></li>
+<li>you shouldn’t be writing a custom application (when perhaps the best thing you can do for your client is choose a proven CMS &hellip; one that eases content management/maintenance/etc) <strong>than</strong></li>
 </ol>
 
 
@@ -405,7 +405,7 @@ from test_project.contrib.db import py_get_db
 
 <h2>You’re Also Choosing a Community</h2>
 
-<p>It’s not all about the code.  Though a framework won’t do your job for you, it can help you be better at your job.  Part of getting better is learning, and choosing a framework with a good community will help you learn.  Whatever you choose, either be involved or observe the community.  Admittedly, I am not very involved in the <a href="http://groups.google.com/group/cake-php">CakePHP</a> community (for many reasons ... including the fact that I develop in .Net, Classic ASP, and Python).  But I am constantly observing the community.  I receive a daily digest of Google Group postings, I occasionally follow conversations on IRC, and I read ~20 blogs having something to do with CakePHP.  I follow the community even though it’s been more than 2 months since I’ve developed in CakePHP.  I’ve made a commitment to this framework and I would be doing myself a disservice by not maintaining some sort of connection to the community.</p>
+<p>It’s not all about the code.  Though a framework won’t do your job for you, it can help you be better at your job.  Part of getting better is learning, and choosing a framework with a good community will help you learn.  Whatever you choose, either be involved or observe the community.  Admittedly, I am not very involved in the <a href="http://groups.google.com/group/cake-php">CakePHP</a> community (for many reasons &hellip; including the fact that I develop in .Net, Classic ASP, and Python).  But I am constantly observing the community.  I receive a daily digest of Google Group postings, I occasionally follow conversations on IRC, and I read ~20 blogs having something to do with CakePHP.  I follow the community even though it’s been more than 2 months since I’ve developed in CakePHP.  I’ve made a commitment to this framework and I would be doing myself a disservice by not maintaining some sort of connection to the community.</p>
 
 <h2>Last Thoughts</h2>
 

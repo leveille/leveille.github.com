@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-04-11T11:57:23-04:00</updated>
+  <updated>2013-06-03T16:29:02-04:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -33,9 +33,9 @@
 
 <h3>Lazy Initialization</h3>
 
-<p><blockquote><p>uses a special marker value (usually null) to indicate a field isn’t loaded. Every access to the field checks the field for the marker value and if unloaded, loads it.</p><footer><strong>Martin Fowler</strong> <cite><a href='http://www.martinfowler.com/eaaCatalog/lazyLoad.html'>Lazy Load</a></cite></footer></blockquote></p>
+<p><blockquote><p>uses a special marker value (usually null) to indicate a field isn’t loaded. Every access to the field checks the field for the marker value and if unloaded, loads it.</p><footer><strong>Martin Fowler <a href="http://www.martinfowler.com/eaaCatalog/lazyLoad.html">http://www.martinfowler.com/eaaCatalog/lazyLoad.html</a> Lazy Load</strong></footer></blockquote></p>
 
-<p>In my first example (original blog post - no longer accessible), I had the need to display <a href="http://www.timeanddate.com/library/abbreviations/timezones/na/est.html">EST</a>/<a href="http://www.timeanddate.com/library/abbreviations/timezones/na/edt.html">EDT</a> time via JavaScript, regardless of the location of the client. The solution of course is to pull in a timestamp from the server (whose time is in EST/EDT), and feed that to the JavaScript Date constructor. From there, all that is needed is a <a href="http://developer.mozilla.org/en/docs/DOM:window.setInterval">setInterval</a>, called every 1 second, and an increment of the timestamp variable by 1 second.</p>
+<p>In my first example (original blog post &ndash; no longer accessible), I had the need to display <a href="http://www.timeanddate.com/library/abbreviations/timezones/na/est.html">EST</a>/<a href="http://www.timeanddate.com/library/abbreviations/timezones/na/edt.html">EDT</a> time via JavaScript, regardless of the location of the client. The solution of course is to pull in a timestamp from the server (whose time is in EST/EDT), and feed that to the JavaScript Date constructor. From there, all that is needed is a <a href="http://developer.mozilla.org/en/docs/DOM:window.setInterval">setInterval</a>, called every 1 second, and an increment of the timestamp variable by 1 second.</p>
 
 <p>``` javascript
 var TIME = function(){</p>
@@ -83,7 +83,7 @@ return {
 
 <h3>ghost</h3>
 
-<p><blockquote><p>A ghost is the real object without any data. The first time you call a method the ghost loads the full data into its fields.</p><footer><strong>Martin Fowler</strong> <cite><a href='http://www.martinfowler.com/eaaCatalog/lazyLoad.html'>Lazy Load</a></cite></footer></blockquote></p>
+<p><blockquote><p>A ghost is the real object without any data. The first time you call a method the ghost loads the full data into its fields.</p><footer><strong>Martin Fowler <a href="http://www.martinfowler.com/eaaCatalog/lazyLoad.html">http://www.martinfowler.com/eaaCatalog/lazyLoad.html</a> Lazy Load</strong></footer></blockquote></p>
 
 <p>This second example is more along the lines of those provided in the Digital Web article, however it is even more simplified. In this case, what I actually have is a combination of ghost and lazy initialization (leaning more in the direction of lazy initialization). The application in which I implemented this bit of code required most of the UI to be constructed through JavaScript. Part of the application requires the implementation of <a href="http://get.live.com/messenger/overview">Windows Live Messanger</a> for tech support purposes. This portion of the application is not visible on page load, and is only available on request. Initially I was loading the JavaScript/CSS/Image files on page load, and the application was suffering a significant performance hit as a result. I don’t have exact numbers, but Windows Live Messanger has in excess of 300+k of JavaScript/CSS/Image files, and I was loading them (via requests for the resources through an iframe) on page load. As you can imagine, the rest of the application was suffering. It was sluggish and unresponsive for seconds at a time.</p>
 
@@ -94,7 +94,7 @@ return {
 <p>``` javascript
 var msnPayLoad = null;</p>
 
-<p>...</p>
+<p>&hellip;</p>
 
 <p>function setupLiveMessangerChat() {</p>
 
@@ -132,11 +132,11 @@ var msnPayLoad = null;</p>
 <p>   }
 }</p>
 
-<p>...</p>
+<p>&hellip;</p>
 
 <p>function activateMsnJavascript() {
    //Grab the necessary scripts for live chat
-   $.getScript("http://settings.messenger.live.com/controls/1.0/PresenceButton.js", function(){</p>
+   $.getScript(&ldquo;<a href="http://settings.messenger.live.com/controls/1.0/PresenceButton.js">http://settings.messenger.live.com/controls/1.0/PresenceButton.js</a>&rdquo;, function(){</p>
 
 <pre><code>  $.getScript("http://messenger.services.live.com/users/etc", function(){
      $("#support div.support").load("core/section-includes/live-messanger-chat.inc.htm?stamp=" + getStamp());

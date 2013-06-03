@@ -4,7 +4,7 @@
   <title><![CDATA[Category: OpenSource | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/opensource/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-04-11T11:57:23-04:00</updated>
+  <updated>2013-06-03T16:29:02-04:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -20,14 +20,14 @@
     <id>http://jasonleveille.com/blog/2013/01/django-twittercard-released</id>
     <content type="html"><![CDATA[<p>I recently pushed a <a href="http://jasonleveille.com/django-twittercard/">Django TwitterCard</a> to GitHub.  The project simplifies the process of working with <a href="https://dev.twitter.com/docs/cards">Twitter cards</a> in Django.</p>
 
-<p><blockquote><p>Twitter cards make it possible for you to attach media experiences to Tweets that link to your content. Simply add a few lines of HTML to your webpages, and users who Tweet links to your content will have a "card" added to the Tweet that’s visible to all of their followers.</p><footer><strong>@twitterapi</strong> <cite><a href='https://dev.twitter.com/docs/cards'>dev.twitter.com/docs/cards/&hellip;</a></cite></footer></blockquote></p>
+<p><blockquote><p>Twitter cards make it possible for you to attach media experiences to Tweets that link to your content. Simply add a few lines of HTML to your webpages, and users who Tweet links to your content will have a &ldquo;card&rdquo; added to the Tweet that’s visible to all of their followers.</p><footer><strong>@twitterapi <a href="https://dev.twitter.com/docs/cards">https://dev.twitter.com/docs/cards</a></strong></footer></blockquote></p>
 
 <!--more-->
 
 
 <h2>Demonstration</h2>
 
-<p>With a small bit of configuration, Django TwitterCard can handle the creation of the necessary meta-tags related to your card.  Here's a quick example:</p>
+<p>With a small bit of configuration, Django TwitterCard can handle the creation of the necessary meta-tags related to your card.  Here&rsquo;s a quick example:</p>
 
 <p>```python settings.py
 TWITTERCARD_CONFIG = {</p>
@@ -74,11 +74,11 @@ TWITTERCARD_CONFIG = {</p>
 
 <h2>Twitter Cards and the Open Graph</h2>
 
-<p>It's important to note the relationship between Twitter cards and the Open Graph:</p>
+<p>It&rsquo;s important to note the relationship between Twitter cards and the Open Graph:</p>
 
-<p><blockquote><p>If you're already using OpenGraph to describe data on your page, it’s easy to generate a Twitter card without duplicating your tags and data. When the Twitter card processor looks for tags on your page, it first checks for the Twitter property, and if not present, falls back to the supported Open Graph property</p><footer><strong>@twitterapi</strong> <cite><a href='https://dev.twitter.com/docs/cards#open-graph'>dev.twitter.com/docs/&hellip;</a></cite></footer></blockquote></p>
+<p><blockquote><p>If you&rsquo;re already using OpenGraph to describe data on your page, it’s easy to generate a Twitter card without duplicating your tags and data. When the Twitter card processor looks for tags on your page, it first checks for the Twitter property, and if not present, falls back to the supported Open Graph property</p><footer><strong>@twitterapi <a href="https://dev.twitter.com/docs/cards#open-graph">https://dev.twitter.com/docs/cards#open-graph</a></strong></footer></blockquote></p>
 
-<p>If you're already using the following tags in the Open Graph, they won't be necessary in your Twitter card tags:</p>
+<p>If you&rsquo;re already using the following tags in the Open Graph, they won&rsquo;t be necessary in your Twitter card tags:</p>
 
 <ol>
 <li><code>og:url</code></li>
