@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Hack | Jason Leveille]]></title>
   <link href="http://jasonleveille.com/blog/categories/hack/atom.xml" rel="self"/>
   <link href="http://jasonleveille.com/"/>
-  <updated>2013-06-03T16:29:02-04:00</updated>
+  <updated>2013-06-04T09:36:33-04:00</updated>
   <id>http://jasonleveille.com/</id>
   <author>
     <name><![CDATA[Jason Leveille]]></name>
@@ -20,6 +20,8 @@
     <id>http://jasonleveille.com/blog/2013/06/civic-hacking-with-hfcwesternma-hackforchange</id>
     <content type="html"><![CDATA[<p><a href="http://www.flickr.com/photos/molly_ampersand/8914863543/" title="Hanging the National Day of Civic Hacking banner by Molly Ampersand, on Flickr"><img src="http://farm4.staticflickr.com/3686/8914863543_eff66535e4_c.jpg" style="width: 100%" alt="Hanging the National Day of Civic Hacking banner"></a></p>
 
+<p><em>Photo Courtesy of <a href="http://mollymcleod.com/">Molly McLeod</a></em></p>
+
 <p>This past weekend ~100 hackers from all over Massachussetts (and Eliot, ME :) generously donated their time and expertise for the <a href="http://hackforchange.org/">National Day of Civic Hacking</a> event for <a href="http://hackforwesternmass.org/">Western Mass</a>.  This inspiring event was one of 95 held across the country.</p>
 
 <p><blockquote><p>The event will bring together citizens, software developers, and entrepreneurs from all over the nation to collaboratively create, build, and invent new solutions using publicly-released data, code and technology to solve challenges relevant to our neighborhoods, our cities, our states and our country.</p><footer><strong>@hackforchange <a href="http://hackforchange.org/page/about">http://hackforchange.org/page/about</a> About National Day of Civic Hacking</strong></footer></blockquote></p>
@@ -33,25 +35,25 @@
 
 <h3>Visualizing Federal Data</h3>
 
-<p>NPP has a great tool for <a href="http://data.nationalpriorities.org/">mapping federal data</a>.  Unfortunately, the <a href="http://data.nationalpriorities.org/mashups/y83ggswab551vaqa/">map for the data is generated in Flash</a>.</p>
-
-<p><em>Flash Map</em></p>
+<p>NPP has a great tool for <a href="http://data.nationalpriorities.org/">mapping federal data</a>.  Unfortunately, the <a href="http://data.nationalpriorities.org/mashups/l61x9apge9ovggvi/">map for the data is generated in Flash</a>.</p>
 
 <p><img src="/images/posts/flash-map.jpg" title="&lsquo;Flash Map&rsquo; &lsquo;Flash Map&rsquo;" ></p>
 
-<p>Part of our goal for 2013 is to make the main <a href="http://nationalpriorities.org">NPP site</a> more accessible and responsive to varying devices.  I&rsquo;ve been tackling bits and pieces of that goal over the past few months, and figured this event would be a great time to start getting away from flash.  With the help of <a href="http://www.gismatters.com/">Chris Duncan</a> I made some good progress toward that goal (See: JavaScript/D3 Map).</p>
+<p><em>Flash Map: Percentage of youth under age 18 estimated to be <a href="http://data.nationalpriorities.org/mashups/l61x9apge9ovggvi/">living in poverty during 2011</a>. Darker colors indicate higher percentages.</em></p>
 
-<p><em>JavaScript/D3 State Map</em></p>
+<p>Part of our goal for 2013 is to make the main <a href="http://nationalpriorities.org">NPP site</a> more accessible and responsive to varying devices.  I&rsquo;ve been tackling bits and pieces of that goal over the past few months, and figured this event would be a great time to start getting away from flash.  With the help of <a href="http://www.gismatters.com/">Chris Duncan</a> I made some good progress toward that goal.</p>
 
 <p><img src="/images/posts/d3-map-states.jpg" title="&lsquo;D3 States Map&rsquo; &lsquo;D3 States Map&rsquo;" ></p>
 
-<p>We allow folks to drill into a state to view data at the County level.  However, we feel that painting a picture of budget data showing all counties in the US at once may tell a more compelling story.  I have much more work to do here, however I did make some progress on that front (See: JavaScript/D3 County Map)</p>
+<p><em>D3/JavaScript Map: Percentage of youth under age 18 estimated to be <a href="http://data.nationalpriorities.org/mashups/l61x9apge9ovggvi/">living in poverty during 2011</a>. Darker colors indicate higher percentages.</em></p>
 
-<p><em>JavaScript/D3 County Map</em></p>
+<p>We allow folks to drill into a state to view data at the County level.  However, we feel that painting a picture of budget data showing all counties in the US at once may tell a more compelling story.  I have much more work to do here, however I did make some progress on that front (See: JavaScript/D3 County Map)</p>
 
 <p><img src="/images/posts/d3-map-counties.jpg" title="&lsquo;D3 Counties Map&rsquo; &lsquo;D3 Counties Map&rsquo;" ></p>
 
-<p>In general, I&rsquo;m happy with what Chris and I were able to accomplish in a few days.  I had never worked with <a href="http://d3js.org">D3</a> before, which was a fun experience.</p>
+<p><em>D3/JavaScript County Map: Colors on this map mean nothing. They merely helped with the proof of concept.</em></p>
+
+<p>In general, I&rsquo;m happy with what Chris and I were able to accomplish in a few days.  I had never worked with <a href="http://d3js.org">D3</a> before, which was a fun experience. I have a lot of work left to do, however this past weekend was a big push in the right direction.  Soon the NPP/Data site will be free of flash maps.</p>
 
 <h2>An Awesome Event</h2>
 
