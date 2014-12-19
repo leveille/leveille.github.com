@@ -2,7 +2,7 @@
 layout: post
 title: "Civic Hacking with #HFCWesternMA, #hackforchange"
 date: 2013-06-03 10:07
-comments: true
+comments: false
 categories: Hack Community
 noindex: true
 ---
@@ -48,4 +48,3 @@ In general, I'm happy with what Chris and I were able to accomplish in a few day
 ## An Awesome Event
 
 The event organizers deserve a big pat on the back.  The food was great (SUSHI!!!) and there were plenty of healthy choices for sustained energy.  [The location](http://www.umass.edu/) couldn't have been more comfortable, and the energy throughout the weekend was really ... energizing.  This was the first time I'd attended a civic hacking event (I attended a Facebook event a few years ago) and I'd definitely attend again.  I'll be eagerly anticipating this event next year.
-
