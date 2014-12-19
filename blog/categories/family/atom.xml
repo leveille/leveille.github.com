@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Family | Jason Leveille]]></title>
+  <link href="http://jasonleveille.com/blog/categories/family/atom.xml" rel="self"/>
+  <link href="http://jasonleveille.com/"/>
+  <updated>2014-12-19T09:11:44-05:00</updated>
+  <id>http://jasonleveille.com/</id>
+  <author>
+    <name><![CDATA[Jason Leveille]]></name>
+    <email><![CDATA[i@leve.us]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Stop The War: Don't Hurt Each Other]]></title>
+    <link href="http://jasonleveille.com/blog/2014/12/stop-the-war/"/>
+    <updated>2014-12-19T08:51:00-05:00</updated>
+    <id>http://jasonleveille.com/blog/2014/12/stop-the-war</id>
+    <content type="html"><![CDATA[<p>I love this bit of arts and crafts from my oldest daughter.  This&rsquo;ll bring a smile to my face for years to come. Thanks Cameron.</p>
+
+<p><img src="/images/posts/war.jpg" title="&lsquo;Stop the War&rsquo; &lsquo;Stop the War&rsquo;" ></p>
+]]></content>
+  </entry>
+  
+</feed>
